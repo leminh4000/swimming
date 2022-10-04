@@ -22,7 +22,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({type: 'signin', payload: token});
-        navigate('TrackList');
+        navigate('questionFlow');
     } else {
         navigate('loginFlow');
     }
@@ -42,7 +42,7 @@ const signup = dispatch => async ({email, password}) => {
             await  AsyncStorage.setItem('token', response.data.token);
             dispatch({type: 'signin', data: response.data.token});
 
-            navigate('TrackList');
+            navigate('questionFlow');
         } catch (err) {
             dispatch({type: 'add_error', payload: 'Something went wrong with sign up'});
         }
@@ -58,7 +58,7 @@ const signin = (dispatch)  => async ({email, password}) => {
         await  AsyncStorage.setItem('token', response.data.token);
         dispatch({type: 'signin', data: response.data.token});
 
-        navigate('TrackList');
+        navigate('questionFlow');
     } catch (err) {
         dispatch({type: 'add_error', payload: 'Something went wrong with sign in'});
     }
