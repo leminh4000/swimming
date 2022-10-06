@@ -5,11 +5,11 @@ import {Button} from "react-native-elements";
 import {Context as AuthContext} from "../context/AuthContext";
 import Spacer from "../components/Spacer";
 
-const AccountScreen = () => {
+const ProfileScreen = () => {
     const {signout} = useContext(AuthContext);
     console.log(signout);
     return <>
-        <Text style={{fontSize: 48}}>AccountScreen</Text>
+        <Text style={{fontSize: 48}}>ProfileScreen</Text>
         <Spacer/>
         <Button title="Sign Out" onPress={signout}/>
     </>
@@ -17,4 +17,4 @@ const AccountScreen = () => {
 
 const styles = StyleSheet.create({})
 
-export default AccountScreen;
+export default ProfileScreen;

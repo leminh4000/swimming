@@ -1,25 +1,20 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text, FlatList} from 'react-native';
-import ResultDetail from "./ResultDetail";
+import ResultDetail from "./WorkoutVideoDetail";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {withNavigation} from "react-navigation";
 
-const ResultsList = ({title, results, navigation}) => {
+const WorkoutVideoList = ({title, results, navigation}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
+                vertical
                 data={results}
                 keyExtractor={(result) => result.id}
                 renderItem={({item}) => {
                     return (
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('ResultsShow', {id: item.id})}
-                        >
-                            <ResultDetail result={item}/>
-                        < / TouchableOpacity>
+                        <ResultDetail result={item}/>
                     );
                 }}/>
         </View>
@@ -39,4 +34,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(ResultsList);
+export default withNavigation(WorkoutVideoList);

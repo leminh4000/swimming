@@ -8,11 +8,11 @@ const authReducer = (state, action) => {
         case 'add_error':
             return {...state, errorMessage: action.payload};
         case 'signin':
-            return {errorMessage: '', token: action.payload};
+            return {...state, errorMessage: '', token: action.payload};
         case 'clear_error_message':
             return {...state, errorMessage: ''};
         case 'signout':
-            return {token: null, errorMessage: ''};
+            return {...state, token: null, errorMessage: ''};
         default :
             return state;
     }
@@ -29,7 +29,6 @@ const tryLocalSignin = dispatch => async () => {
 }
 
 const clearErrorMessage = dispatch => () => {
-    console.log('clear error message');
     dispatch({type: 'clear_error_message'});
 }
 
