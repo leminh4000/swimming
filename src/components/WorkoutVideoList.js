@@ -1,15 +1,16 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text, FlatList} from 'react-native';
 import ResultDetail from "./WorkoutVideoDetail";
-import {TouchableOpacity} from "react-native-gesture-handler";
 import {withNavigation} from "react-navigation";
+import Spacer from "./Spacer";
 
 const WorkoutVideoList = ({title, results, navigation}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
+            <Spacer/>
             <FlatList
-                vertical
+                horizontal
                 data={results}
                 keyExtractor={(result) => result.id}
                 renderItem={({item}) => {
@@ -27,10 +28,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 10,
         marginBottom: 5,
+        color: 'white',
 
     },
     container: {
+        // marginTop:20,
         marginBottom: 10,
+
     }
 });
 

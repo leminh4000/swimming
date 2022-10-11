@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import createDataContext from "./createDataContext";
-import trackerApi from "../api/trackerApi";
+import swimApi from "../api/swimApi";
 import {navigate} from '../navigationRef'
 
 const authReducer = (state, action) => {
@@ -22,7 +22,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({type: 'signin', payload: token});
-        navigate('questionFlow');
+        navigate('ResolveQuest');
     } else {
         navigate('loginFlow');
     }
@@ -34,7 +34,7 @@ const clearErrorMessage = dispatch => () => {
 
 const signup = dispatch => async ({email, password}) => {
         try {
-            const response = await trackerApi.post('/signup', {
+            const response = await swimApi.post('/signup', {
                 email,
                 password
             });
@@ -50,7 +50,7 @@ const signup = dispatch => async ({email, password}) => {
 
 const signin = (dispatch)  => async ({email, password}) => {
     try {
-        const response = await trackerApi.post('/signin', {
+        const response = await swimApi.post('/signin', {
             email,
             password
         });
@@ -59,6 +59,7 @@ const signin = (dispatch)  => async ({email, password}) => {
 
         navigate('questionFlow');
     } catch (err) {
+        console.error(err.message);
         dispatch({type: 'add_error', payload: 'Something went wrong with sign in'});
     }
 }

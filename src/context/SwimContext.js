@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import createDataContext from "./createDataContext";
-import trackerApi from "../api/trackerApi";
+import swimApi from "../api/swimApi";
 import {navigate} from '../navigationRef'
 
 const swimReducer = (state, action) => {
@@ -17,6 +17,7 @@ const swimReducer = (state, action) => {
 };
 
 const tryLocalGetLevel = dispatch => async () => {
+    //await  AsyncStorage.removeItem('level');
     const level = await AsyncStorage.getItem('level');
     if (level) {
         dispatch({type: 'setLevel', payload: level});
@@ -33,12 +34,13 @@ const clearErrorMessage = dispatch => () => {
 const setLevel = (dispatch)  => async ({level}) => {
     console.log("level",level);
     try {
-        const response = await trackerApi.post('/userLevels', {
+        const response = await swimApi.post('/userLevels', {
             level:level,
         });
         console.log("response.data", response.data);
         console.log("response.data.level", response.data.level);
         await  AsyncStorage.setItem('level', `${response.data.level}`);
+
         dispatch({type: 'setLevel', data: response.data.level});
 
         navigate('mainFlow');

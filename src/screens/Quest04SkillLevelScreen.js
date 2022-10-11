@@ -32,7 +32,7 @@ const Quest04SkillLevelScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container           : {
         flex           : 8,
-        backgroundColor: 'blue',
+        backgroundColor: 'midnightblue',
         flexDirection  : 'column',
         alignItems     : 'center',
     },

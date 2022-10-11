@@ -1,11 +1,86 @@
 import React from 'react'
 
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
+import ResultsList from "../components/WorkoutVideoList";
 
-const CoachScreen = ()=>{
-    return <Text style={{fontSize:48}}>TrackCreateScreen</Text>
+const videos = [
+    {
+        id                    : 1,
+        url                   : 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+        name                  : 'Freestyle',
+        playableDurationMillis: 10000,
+    },
+    {
+        id                    : 2,
+        url                   : 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+        name                  : 'Butterfly',
+        playableDurationMillis: 10000,
+
+    },
+    {
+        id                    : 3,
+        url                   : 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+        name                  : 'Backstroke',
+        playableDurationMillis: 10000,
+    },
+];
+const CoachScreen = () => {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>Your plan</Text>
+            <View style={styles.containerImage}>
+                <ImageBackground
+                    style={styles.image}
+                    source={require('../../assets/manswim.jpeg')}
+                >
+                    <Text style={styles.label}>START YOUR PLAN</Text>
+                </ImageBackground>
+            </View>
+            <View>
+                <ResultsList results={videos}
+                             title="EXAMPLE WORKOUTS"/>
+            </View>
+        </View>
+    );
 };
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    image         : {
+        width       : 350,
+        height      : 200,
+        // resizeMode  : 'center',
+        margin      : 30,
+        borderRadius: 10,
+    },
+    title         : {
+        fontSize    : 28,
+        fontWeight  : 'bold',
+        color       : 'white',
+        margin      : 20,
+        alignContent: 'flex-end',
+
+    },
+    label         : {
+        fontSize    : 20,
+        fontWeight  : 'bold',
+        backgroundColor : 'limegreen',
+        marginLeft      : 20,
+        marginTop : 10,
+        alignSelf : 'flex-start'
+        // alignContent: 'flex-end',
+
+    },
+    container     : {
+        flex           : "100%",
+        backgroundColor: 'midnightblue',
+        flexDirection  : 'column',
+    },
+    containerImage: {
+        flex           : "100%",
+        backgroundColor: 'darkblue',
+        flexDirection  : 'column',
+        alignItems     : 'center',
+    }
+})
 
 export default CoachScreen;
