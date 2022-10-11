@@ -1,14 +1,10 @@
 install packages:
+-clear dependencies in package.json
 
-$npm install react-navigation
 
-$npm install react-navigation-stack
+expo install react-navigation react-navigation-stack react-navigation-tabs react-native-gesture-handler react-native-reanimated react-native-screens react-native-elements axios @react-native-async-storage/async-storage @rneui/themed expo-av @react-native-community/masked-view
 
-$npm install react-navigation-tabs
-
-$npm install react-navigation react-navigation-stack react-navigation-tabs react-native-gesture-handler react-native-reanimated react-native-screens react-native-elements axios @react-native-async-storage/async-storage @rneui/themed expo-av 
+<!-- npx expo install react-native-gesture-handler@~2.5.0 react-native-reanimated@~2.9.1 react-native-screens@~3.15.0 -->
 
 
 
-$npm install react-native-elements
-$npm install axios
