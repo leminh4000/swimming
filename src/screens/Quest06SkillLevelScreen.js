@@ -38,7 +38,6 @@ const Quest06SkillLevelScreen = ({navigation}) => {
         </View>
         <NextButton nextScreen='MainFlow'
                     navigation={navigation} onSubmit={()=>{
-                        console.log("nextScreen");
                         setLevel({level});
         }}>
         </NextButton>

@@ -1,5 +1,5 @@
 {
-  "name": "tracks",
+  "name": "swimming",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -10,20 +10,30 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
+    "@react-native-community/masked-view": "^0.1.11",
     "@rneui/themed": "^4.0.0-rc.6",
-    "axios": "^1.0.0",
-    "expo": "~46.0.13",
+    "axios": "^1.1.2",
+    "expo": "^46.0.15",
     "expo-av": "^12.0.4",
-    "expo-status-bar": "~1.4.0",
-    "react": "^18.0.0",
-    "react-native": "^0.69.6",
+    "expo-document-picker": "^10.3.0",
+    "expo-file-system": "~14.1.0",
+    "fit-file-parser": "^1.9.3",
+    "install": "^0.13.0",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-native": "0.69.6",
+    "react-native-chart-kit": "^6.12.0",
     "react-native-elements": "^3.4.2",
+    "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.5.0",
+    "react-native-material-menu": "^2.0.0",
     "react-native-reanimated": "~2.9.1",
     "react-native-screens": "~3.15.0",
+    "react-native-svg": "^12.3.0",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "react-navigation-tabs": "^2.11.2"
+    "react-navigation-tabs": "^2.11.2",
+    "servicestack-client": "^0.0.42"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

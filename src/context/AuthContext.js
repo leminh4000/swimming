@@ -57,7 +57,7 @@ const signin = (dispatch)  => async ({email, password}) => {
         await  AsyncStorage.setItem('token', response.data.token);
         dispatch({type: 'signin', data: response.data.token});
 
-        navigate('questionFlow');
+        navigate('ResolveQuest');
     } catch (err) {
         console.error(err.message);
         dispatch({type: 'add_error', payload: 'Something went wrong with sign in'});
@@ -66,6 +66,7 @@ const signin = (dispatch)  => async ({email, password}) => {
 
 const signout = dispatch => async () => {
     await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('level');
     dispatch({type: 'signout'});
     navigate('loginFlow');
 }
