@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {ButtonGroup} from "@rneui/themed";
+// import {ButtonGroup} from "@rneui/themed";
 import {Video} from "expo-av";
 import {Button} from "react-native-elements";
 import NextButton from "../components/NextButton";
