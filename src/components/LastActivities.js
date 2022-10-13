@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, FlatList, TouchableOpacity} from 'react-native';
-import {StackActions as lengths, withNavigation} from "react-navigation";
+import {withNavigation} from "react-navigation";
 import ActivitySummary from "./ActivitySummary";
 
 const LastActivities = ({title, activities, navigation}) => {
@@ -15,20 +15,10 @@ const LastActivities = ({title, activities, navigation}) => {
                 renderItem={({item}) => {
                     return (
                         <TouchableOpacity onPress={()=>{
-                            const lengths=[];
-                            const records=[];
-                            for (const lap of item.sessions[0].laps) {
-                                lengths.push(...lap.lengths);
-                                records.push(...lap.records);
-                            }
-                            for (const lap of item.sessions[0].laps) {
-                                lengths.push(...lap.lengths);
-                            }
-                            console.log(lengths.map(length => length.total_strokes));
-                            console.log(records.map(record => record.heart_rate));
-                            return navigation.navigate('ActivityDetail', {activity: item, lengths, records});
+                            return navigation.navigate('ActivityDetail', {activity: item});
                         }}>
                         <ActivitySummary activity={item}/>
+
                         </TouchableOpacity>
                     );
                 }}/>

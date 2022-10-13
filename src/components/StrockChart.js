@@ -7,19 +7,18 @@ import {
     TouchableOpacity,
     Dimensions
 } from 'react-native';
-import {LineChart} from "react-native-chart-kit";
+import {BarChart, LineChart} from "react-native-chart-kit";
 
-const HeartRateChart = ({activity})=>{
-    const data=[];
+const StrockChart = ({activity})=>{
+    const lengths=[];
     for (const lap of activity.sessions[0].laps) {
-        for (const record of lap.records) {
-            data.push(record.heart_rate);
-        }
+        lengths.push(...lap.lengths);
     }
-    console.log(data.length);
+    let data = lengths.map(length => length.total_strokes);
     return (
         <View>
-            <Text>Nhịp tim</Text>
+            <Text style={styles.header}>Số sải tay/ mỗi phút - Average Stroke Rater</Text>
+
             <LineChart
                 data={{
                     datasets: [
@@ -34,8 +33,8 @@ const HeartRateChart = ({activity})=>{
                 yAxisSuffix=""
                 yAxisInterval={20} // optional, defaults to 1
                 chartConfig={{
-                    backgroundColor       : "brown",
-                    backgroundGradientFrom: "brown",
+                    backgroundColor       : "blue",
+                    backgroundGradientFrom: "green",
                     backgroundGradientTo  : "black",
                     decimalPlaces         : 0, // optional, defaults to 2dp
                     color                 : (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -76,4 +75,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HeartRateChart;
+export default StrockChart;

@@ -4,16 +4,16 @@ import {
     View,
     StyleSheet,
     Text,
-    TouchableOpacity,
     Dimensions
 } from 'react-native';
-import {BarChart, LineChart} from "react-native-chart-kit";
+import {BarChart} from "react-native-chart-kit";
 
-const LapsRateChart = ({laps}) => {
-    const data = laps.map(lap => lap.total_timer_time);
+const LapsChart = ({activity}) => {
+
+    const data = activity.sessions[0].laps.map(lap => lap.total_timer_time);
     return (
         <View>
-            <Text style={styles.header}>Thời gian bơi mỗi vòng - Lap(10v)</Text>
+            <Text style={styles.header}>Thời gian bơi mỗi vòng - Lap (10v)</Text>
             <BarChart
                 data={{
                     datasets: [
@@ -22,7 +22,7 @@ const LapsRateChart = ({laps}) => {
                         },
 
                     ],
-                    config  : {barWidth: 0.1},
+                    config  : {barWidth: 1},
 
                 }}
                 maxValue={500}
@@ -39,7 +39,7 @@ const LapsRateChart = ({laps}) => {
                     style                 : {
                         borderRadius: 1,
                     },
-                    barPercentage         : 0.2,
+                    barPercentage         : 0.8,
                 }}
                 style={{
                     marginVertical: 1,
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LapsRateChart;
+export default LapsChart;

@@ -1,31 +1,24 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
-import {View, StyleSheet, Text, Dimensions} from 'react-native';
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
-} from "react-native-chart-kit";
-import {NavigationEvents} from "react-navigation";
+import {View, StyleSheet, ScrollView} from 'react-native';
 import HeartRateChart from "../components/HeartRateChart";
-import StrockRateChart from "../components/StrockRateChart";
-import LapsTimeChart from "../components/LapsRateChart";
+import StrockChart from "../components/StrockChart";
+import LapsChart from "../components/LapsChart";
+import SwoftChart from "../components/SwoftChart";
 
 const ActivityDetailScreen = ({navigation}) => {
-    // const activity = navigation.getParam('activity');
-    const lengths = navigation.getParam('lengths');
-    const records = navigation.getParam('records');
     const activity = navigation.getParam('activity');
 
     return (
         <>
             <View>
-                <HeartRateChart records={records}/>
-                <LapsTimeChart laps={activity.sessions[0].laps}/>
-                <StrockRateChart lengths={lengths}/>
+                <ScrollView>
+                    <HeartRateChart activity={activity}/>
+
+                    <LapsChart activity={activity}/>
+                    <SwoftChart activity={activity}/>
+                    <StrockChart activity={activity}/>
+                </ScrollView>
             </View>
         </>
     );
