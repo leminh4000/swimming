@@ -16,6 +16,21 @@ const swimReducer = (state, action) => {
                 errorMessage: '',
                 level       : action.payload
             };
+        case 'setGender':
+            return {
+                ...state,
+                gender: action.payload,
+            };
+        case 'setHeight':
+            return {
+                ...state,
+                height: action.payload,
+            };
+        case 'setWeight':
+            return {
+                ...state,
+                weight: action.payload,
+            };
         case 'clear_error_message':
             return {
                 ...state,
@@ -25,6 +40,28 @@ const swimReducer = (state, action) => {
             return state;
     }
 };
+const setGender = dispatch => (gender) => {
+    dispatch({
+        type   : 'setGender',
+        payload: gender,
+    });
+}
+
+const setHeight = dispatch => (height) => {
+    console.log('setHeight', height);
+    dispatch({
+        type   : 'setHeight',
+        payload: height,
+    });
+}
+const setWeight = dispatch => (weight) => {
+    console.log("setWeight",weight);
+    dispatch({
+        type   : 'setWeight',
+        payload: weight,
+    });
+}
+
 
 const tryLocalGetLevel = dispatch => async () => {
     // await AsyncStorage.removeItem('level');
@@ -67,7 +104,7 @@ const clearErrorMessage = dispatch => () => {
     dispatch({type: 'clear_error_message'});
 }
 
-const setLevel = (dispatch) => async ({level}) => {
+const setLevel = (dispatch) => async (level) => {
     console.log("level", level);
     try {
         const response = await swimApi.post('/userLevels', {
@@ -82,7 +119,7 @@ const setLevel = (dispatch) => async ({level}) => {
             data: response.data.level
         });
 
-        navigate('mainFlow');
+        // navigate('mainFlow');
     } catch (err) {
         console.error("ERROR: ", err.message)
         dispatch({
@@ -100,7 +137,10 @@ export const {
     {
         setLevel,
         clearErrorMessage,
-        tryLocalGetLevel
+        tryLocalGetLevel,
+        setGender,
+        setHeight,
+        setWeight,
     },
     {
         token       : null,

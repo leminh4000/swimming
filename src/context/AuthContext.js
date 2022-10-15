@@ -19,6 +19,7 @@ const authReducer = (state, action) => {
 };
 
 const tryLocalSignin = dispatch => async () => {
+    // await AsyncStorage.removeItem('token');
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({type: 'signin', payload: token});
@@ -32,7 +33,7 @@ const clearErrorMessage = dispatch => () => {
     dispatch({type: 'clear_error_message'});
 }
 
-const signup = dispatch => async ({email, password}) => {
+const signup = dispatch => async ({username, email, password}) => {
         try {
             const response = await swimApi.post('/signup', {
                 email,
@@ -48,10 +49,10 @@ const signup = dispatch => async ({email, password}) => {
     }
 
 
-const signin = (dispatch)  => async ({email, password}) => {
+const signin = (dispatch)  => async ({username, password}) => {
     try {
         const response = await swimApi.post('/signin', {
-            email,
+            username,
             password
         });
         await  AsyncStorage.setItem('token', response.data.token);

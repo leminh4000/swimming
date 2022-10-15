@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
-import {NavigationEvents, withNavigation} from "react-navigation";
+import {withNavigation} from "react-navigation";
 
 const ArchivementTable = ({
                               title,

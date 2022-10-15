@@ -1,9 +1,8 @@
-import React, {useContext, useState} from 'react'
+import React, {useState} from 'react'
 
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button, Input, Text} from "react-native-elements";
 import Spacer from "../components/Spacer";
-import {Context as AuthContext} from "../context/AuthContext";
 
 const AuthForm = ({headerText, errorMessage, onSubmit, submitButtonText}) => {
     const [email, setEmail] = useState('');

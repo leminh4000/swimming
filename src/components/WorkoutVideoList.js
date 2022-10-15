@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Text, FlatList} from 'react-native';
+import {View, StyleSheet, Text, FlatList} from 'react-native';
 import ResultDetail from "./WorkoutVideoDetail";
 import {withNavigation} from "react-navigation";
 import Spacer from "./Spacer";

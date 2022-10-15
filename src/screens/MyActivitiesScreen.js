@@ -5,8 +5,6 @@ import {Context as ActivityContext} from "../context/ActivityContext";
 import LastActivities from "../components/LastActivities";
 import {NavigationEvents} from "react-navigation";
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
-import {MaterialCommunityIcons} from "@expo/vector-icons";
-import {Icon} from "react-native-elements";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
 import { Buffer } from "buffer";

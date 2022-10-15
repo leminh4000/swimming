@@ -8,7 +8,8 @@ const NextButton = ({
                         onSubmit
                     }) => {
     return <View style={styles.buttonContainer}>
-        <Button title="Next"
+        {/*<Button title="Next"*/}
+        <Button title="Tiếp tục"
                 buttonStyle={styles.button} onPress={() => {
             if (!onSubmit) {
                 navigation.navigate(nextScreen);
@@ -29,8 +30,7 @@ const styles = StyleSheet.create({
         width          : 250,
         height         : 60,
         marginBottom   : 20,
-        backgroundColor: "mediumturquoise",
-
+        backgroundColor: "#145BB6",
     },
 })
 

@@ -1,35 +1,40 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-// import {ButtonGroup} from "@rneui/themed";
-import {Video} from "expo-av";
-import {Button} from "react-native-elements";
 import NextButton from "../components/NextButton";
+import {Context as SwimContext} from "../context/SwimContext";
 
 const Quest03SkillLevelScreen = ({navigation}) => {
-    const video = React.useRef(null);
-    const [status, setStatus] = React.useState({});
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const buttons = [
-        '1',
-        '2',
-        '3',
-        '4',
-        '5'
-    ];
+    const {
+        state,
+        setLevel
+    } = useContext(SwimContext);
+    React.useRef(null);
     return (<>
         <View style={styles.container}>
-            <View style={{marginTop: 20}}>
-                <Text style={styles.textBig}>Which length pool do you usually swim in?</Text>
-            </View>
-            <View>
-                 <Button buttonStyle={styles.button} title="25 Meters"/>
-                 <Button buttonStyle={styles.button} title="50 Meters"/>
-                 <Button buttonStyle={styles.button} title="75 Meters"/>
-                 <Button buttonStyle={styles.button} title="100 Meters"/>
-            </View>
+            <Text style={styles.textBold}>Trình độ bơi của bạn đang ở cấp độ nào?</Text>
+            <Text style={styles.textRegular}>Chúng tôi sẽ giúp bạn đưa ra những bài tập phù hợp với thể trạng và kinh nghiệm bơi của bạn.</Text>
+            <TouchableOpacity style={styles.containerButton} onPress={() => {
+                setLevel(1);
+            }}>
+                <Text style={styles.textBold}>Mới bắt đầu</Text>
+                <Text style={styles.textRegular}>Tôi mới bắt đầu tập luyện bơi lội và muốn học cách cấu trúc một bài tập bơi.</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.containerButton} onPress={() => {
+                setLevel(2);
+            }}>
+                <Text style={styles.textBold}>Trung bình</Text>
+                <Text style={styles.textRegular}>Tôi tập bơi khá thường xuyên và muốn cải thiện thêm cấp độ bài tập của mình.</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.containerButton} onPress={() => {
+                setLevel(3);
+            }}>
+                <Text style={styles.textBold}>Nâng cao</Text>
+                <Text style={styles.textRegular}>Tôi bơi khá tốt và sẵn sàng để tập những bài tập nâng cao hơn.</Text>
+            </TouchableOpacity>
+
         </View>
-        <NextButton nextScreen='Quest04SkillLevel'
+        <NextButton nextScreen='MainFlow'
                     navigation={navigation}>
         </NextButton>
     </>)
@@ -42,88 +47,47 @@ const Quest03SkillLevelScreen = ({navigation}) => {
 }*/
 
 const styles = StyleSheet.create({
-    container           : {
-        flex           : 8,
-        backgroundColor: 'midnightblue',
-        flexDirection  : 'column',
+    container      : {
+        flex         : 8,
+        flexDirection: 'column',
+        alignItems   : 'center',
+    },
+    containerButton: {
+        backgroundColor: 'gray',
+        justifyContent : "center",
         alignItems     : 'center',
-    },
-    textBig             : {
-        fontSize    : 18,
-        fontWeight  : 'bold',
-        color       : 'white',
-        textAlign   : 'center',
-        marginLeft  : 80,
-        marginRight : 80,
-        marginTop   : 20,
-        marginBottom: 20,
-
-    },
-    textNormal          : {
-        fontSize   : 14,
-        fontWeight : 'bold',
-        color      : 'white',
-        textAlign  : 'center',
-        marginLeft : 80,
-        marginRight: 80,
-
-    },
-    textHuge            : {
-        fontSize   : 40,
-        fontWeight : 'bold',
-        color      : 'white',
-        textAlign  : 'center',
-        marginLeft : 80,
-        marginRight: 80,
-
-    },
-    textLink            : {
-        fontSize   : 12,
-        fontWeight : 'bold',
-        color      : 'white',
-        textAlign  : 'center',
-        marginTop  : 100,
-        marginLeft : 80,
-        marginRight: 80,
-
-    },
-    textUpper           : {
-        fontSize   : 12,
-        fontWeight : 'bold',
-        color      : 'green',
-        textAlign  : 'center',
-        marginTop  : 100,
-        marginLeft : 80,
-        marginRight: 80,
-
-    },
-    buttonGroupContainer: {
-        backgroundColor: "blue",
-        color          : "yellow",
-        textAlign      : "center",
-        marginBottom   : 10,
-        width          : 400,
-        // flexDirection  : 'column',
-        // alignContent   : 'space-between',
-        alignItems     : 'center',
-    },
-    video               : {
-        width : 100,
-        height: 100,
-    },
-    buttonContainer     : {
-        flex           : 1,
-        backgroundColor: "blue",
-        flexDirection  : 'column',
-        alignItems     : 'center',
-    },
-    button              : {
-        width          : 250,
+        width          : '90%',
         height         : 50,
-        color : "green",
-        fontColor : "green",
-        marginBottom   : 20,
+        marginTop      : 30,
+    },
 
+    textBold   : {
+        fontSize         : 14,
+        fontWeight       : 'bold',
+        textAlign        : 'center',
+        textAlignVertical: "center",
+        marginLeft       : 80,
+        marginRight      : 80,
+    },
+    textButton : {
+        fontSize  : 20,
+        fontWeight: 'bold',
+    },
+    textRegular: {
+        fontSize   : 14,
+        textAlign  : 'center',
+        marginLeft : 40,
+        marginRight: 40,
+
+    },
+    textLink   : {
+        fontSize   : 12,
+        fontWeight : 'bold',
+        color      : 'white',
+        textAlign  : 'center',
+        marginTop  : 100,
+        marginLeft : 80,
+        marginRight: 80,
     },
 
 })

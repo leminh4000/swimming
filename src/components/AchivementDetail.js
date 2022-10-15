@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
 } from 'react-native';
-import {Button, Icon} from "react-native-elements";
+import {Icon} from "react-native-elements";
 
 const AchivementDetail = ({achivement}) => {
     console.log("achivement",achivement)

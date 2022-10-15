@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ResultsList from "../components/WorkoutVideoList";
-import {Button} from "react-native-elements";
 
 const WorkoutVideoListScreen = ({navigation}) => {
     const videos = [

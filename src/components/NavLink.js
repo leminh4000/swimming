@@ -7,8 +7,6 @@ import {Context as AuthContext} from "../context/AuthContext";
 import {withNavigation} from "react-navigation";
 
 const NavLink = ({navigation, text, routeName}) => {
-    const {state, signup} = useContext(AuthContext);
-
     return <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate(routeName)}>
             <Spacer>

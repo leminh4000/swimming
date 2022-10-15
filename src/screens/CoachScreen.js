@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     image         : {
         width       : 350,
         height      : 200,
-        // resizeMode  : 'center',
         margin      : 30,
         borderRadius: 10,
     },
@@ -63,20 +62,16 @@ const styles = StyleSheet.create({
     label         : {
         fontSize    : 20,
         fontWeight  : 'bold',
-        backgroundColor : 'limegreen',
         marginLeft      : 20,
         marginTop : 10,
         alignSelf : 'flex-start'
-        // alignContent: 'flex-end',
 
     },
     container     : {
-        flex           : "100%",
         backgroundColor: 'midnightblue',
         flexDirection  : 'column',
     },
     containerImage: {
-        flex           : "100%",
         backgroundColor: 'darkblue',
         flexDirection  : 'column',
         alignItems     : 'center',
