@@ -8,6 +8,7 @@ import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
 import { Buffer } from "buffer";
+import Quest02SkillLevelScreen from "./Quest02SkillLevelScreen";
 
 
 const MyActivitiesScreen = ({navigation}) => {
@@ -152,30 +153,30 @@ const MyActivitiesScreen = ({navigation}) => {
         console.log(result);
         const b64string = await FileSystem.readAsStringAsync(result.uri, {encoding: FileSystem.EncodingType.Base64});
         const content = Buffer.from(b64string, 'base64');
-            // console.log(content);
+        // console.log(content);
 
-            // Create a FitParser instance (options argument is optional)
-            const FitParser = require('fit-file-parser').default;
-            const fitParser = new FitParser({
-                force             : true,
-                speedUnit         : 'km/h',
-                lengthUnit        : 'km',
-                temperatureUnit   : 'kelvin',
-                elapsedRecordField: true,
-                mode              : 'cascade',
-            });
+        // Create a FitParser instance (options argument is optional)
+        const FitParser = require('fit-file-parser').default;
+        const fitParser = new FitParser({
+            force             : true,
+            speedUnit         : 'km/h',
+            lengthUnit        : 'km',
+            temperatureUnit   : 'kelvin',
+            elapsedRecordField: true,
+            mode              : 'cascade',
+        });
 
-            // Parse your file
-            fitParser.parse(content, function (error, data) {
-                // Handle result of parse method
-                if (error) {
-                    console.error(error);
-                } else {
-                    // console.log(JSON.stringify(data));
-                    addActivities(data.activity);
-                }
+        // Parse your file
+        fitParser.parse(content, function (error, data) {
+            // Handle result of parse method
+            if (error) {
+                console.error(error);
+            } else {
+                // console.log(JSON.stringify(data));
+                addActivities(data.activity);
+            }
 
-            });
+        });
         hideMenu();
     }
 
@@ -208,6 +209,13 @@ const MyActivitiesScreen = ({navigation}) => {
         </View>
     < />
 };
+
+// MyActivitiesScreen.navigationOptions = () => {
+//     return {
+//         header: () => false,
+//     }
+// }
+
 
 const styles = StyleSheet.create({
     container    : {

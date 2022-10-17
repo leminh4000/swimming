@@ -39,13 +39,35 @@ const switchNavigator = createSwitchNavigator({
         Signin: SigninScreen,
     }),
     questionFlow: createStackNavigator({
-        Quest01SkillLevel: createStackNavigator({
-            Quest01SkillLevel: Quest01SkillLevelScreen,
-            WorkoutVideo     : WorkoutVideoListScreen,
+            Quest01SkillLevel: createStackNavigator({
+                    Quest01SkillLevel: {
+                        screen: Quest01SkillLevelScreen,
+                    },
+                    WorkoutVideo     : WorkoutVideoListScreen,
+                },
+                {
+                    navigationOptions: {
+                        headerShown: false,
+                    },
+                }),
+            Quest02SkillLevel: {
+                screen: Quest02SkillLevelScreen,
+                navigationOptions: {
+                    headerShown: false,
+                },
+            },
+            Quest03SkillLevel: {
+                screen: Quest03SkillLevelScreen,
+                navigationOptions: {
+                    headerShown: false,
+                },
+            },
+        },
+        {
+            navigationOptions: {
+                headerShown: false,
+            },
         }),
-        Quest02SkillLevel: Quest02SkillLevelScreen,
-        Quest03SkillLevel: Quest03SkillLevelScreen,
-    }),
     mainFlow    : createBottomTabNavigator({
         Activities: {
             screen           : createStackNavigator({

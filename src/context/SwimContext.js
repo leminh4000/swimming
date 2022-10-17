@@ -41,6 +41,7 @@ const swimReducer = (state, action) => {
     }
 };
 const setGender = dispatch => (gender) => {
+    console.log('setGender', gender);
     dispatch({
         type   : 'setGender',
         payload: gender,

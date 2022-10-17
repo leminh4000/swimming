@@ -36,6 +36,7 @@ const clearErrorMessage = dispatch => () => {
 const signup = dispatch => async ({username, email, password}) => {
         try {
             const response = await swimApi.post('/signup', {
+                username,
                 email,
                 password
             });

@@ -7,31 +7,29 @@ const NextButton = ({
                         nextScreen,
                         onSubmit
                     }) => {
-    return <View style={styles.buttonContainer}>
-        {/*<Button title="Next"*/}
+    return (// <Button title="Next"
         <Button title="Tiếp tục"
-                buttonStyle={styles.button} onPress={() => {
-            if (!onSubmit) {
-                navigation.navigate(nextScreen);
-            } else {
-                onSubmit();
-            }
-        }}></Button>
-    </View>
+                buttonStyle={styles.button}
+                containerStyle={styles.containerButton}
+                onPress={() => {
+                    if (onSubmit) {
+                        onSubmit();
+                    }
+                    navigation.navigate(nextScreen);
+                }}>
+        </Button>)
 };
 const styles = StyleSheet.create({
-    buttonContainer: {
-        // flex: 1,
-        backgroundColor: "blue",
-        flexDirection  : 'column',
-        alignItems     : 'center',
-    },
     button         : {
-        width          : 250,
-        height         : 60,
-        marginBottom   : 20,
+        width          : 250, // height         : 60,
         backgroundColor: "#145BB6",
+        borderRadius   : 10,
     },
+    containerButton: {
+        position: 'absolute',
+        bottom  : 20,
+    },
+
 })
 
 export default NextButton;

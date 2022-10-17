@@ -1,10 +1,11 @@
 import React, {useContext, useState} from 'react'
 
-import {View, StyleSheet, Text} from 'react-native';
-import {CheckBox, Icon} from "@rneui/themed";
+import {View, StyleSheet, Text, TextInput, ImageBackground} from 'react-native';
+import {Avatar, CheckBox, Icon} from "@rneui/themed";
 import NextButton from "../components/NextButton";
 import {Input} from "@rneui/base";
 import {Context as SwimContext} from "../context/SwimContext";
+import Quest01SkillLevelScreen from "./Quest01SkillLevelScreen";
 
 const Quest02SkillLevelScreen = ({navigation}) => {
     const {
@@ -12,28 +13,81 @@ const Quest02SkillLevelScreen = ({navigation}) => {
         setHeight,
         setWeight,
     } = useContext(SwimContext);
-    return (
-        <>
-            <View style={styles.container}>
-                <Input placeholder={'Chiều cao (cm)'}
-                       onChangeText={value => setHeight(value)}/>
-                <Input placeholder={'Cân nặng (kg)'}
-                       onChangeText={value => setHeight(value)}/>
-            </View>
-            <NextButton nextScreen='Quest03SkillLevel'
+    return (<View style={styles.container}>
+            <ImageBackground
+                style={styles.image}
+                source={require('../../assets/manswim.jpeg')}
+            >
+                <View style={styles.containerPaper}>
+                    <Avatar containerStyle={styles.avatar}
+                            source={require("../../assets/goswim.png")}
+                            size="xlarge"
+                            rounded
+                            onPress={() => console.log("Works!")}
+                            activeOpacity={0.1}
+
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Chiều cao (cm)'}
+                        onChangeText={value => setHeight(value)}/>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'Cân nặng (kg)'}
+                        onChangeText={value => setWeight(value)}/>
+                    <NextButton
+                        nextScreen='Quest03SkillLevel'
                         navigation={navigation}
-            />
-        </>
+                    />
+
+                </View>
+            </ImageBackground>
+        </View>
 
     );
 };
 
+Quest02SkillLevelScreen.navigationOptions = () => {
+    return {
+        header: () => false,
+    }
+}
+
+
 const styles = StyleSheet.create({
-    container           : {
-        flex         : 8,
-        flexDirection: 'column',
+    avatar         : {
+        position: 'absolute',
+        top: -70,
     },
-    textBig             : {
+
+    input         : {
+        width          : '90%',
+        height         : 40,
+        margin         : 12, // borderWidth: 1,
+        backgroundColor: 'lightgray',
+        borderRadius   : 10,
+        padding        : 10,
+    },
+    container     : {
+        flex     : 1,
+        marginTop: 50,
+    },
+    containerPaper: {
+        width          : '95%',
+        height         : '80%',
+        justifyContent : 'center',
+        backgroundColor: 'white',
+        opacity        : 0.9,
+        borderRadius   : 20,
+        alignItems     : 'center',
+    },
+    image         : {
+        flex          : 1,
+        justifyContent: 'center',
+        alignItems    : 'center',
+    },
+
+    textBig       : {
         fontSize    : 18,
         fontWeight  : 'bold',
         color       : 'white',
@@ -44,7 +98,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
 
     },
-    textNormal          : {
+    textNormal    : {
         fontSize   : 14,
         fontWeight : 'bold',
         color      : 'white',
@@ -53,7 +107,7 @@ const styles = StyleSheet.create({
         marginRight: 80,
 
     },
-    textHuge            : {
+    textHuge      : {
         fontSize   : 40,
         fontWeight : 'bold',
         color      : 'white',
@@ -62,17 +116,7 @@ const styles = StyleSheet.create({
         marginRight: 80,
 
     },
-    textLink            : {
-        fontSize   : 12,
-        fontWeight : 'bold',
-        color      : 'white',
-        textAlign  : 'center',
-        marginTop  : 100,
-        marginLeft : 80,
-        marginRight: 80,
-
-    },
-    textUpper           : {
+    textUpper     : {
         fontSize   : 12,
         fontWeight : 'bold',
         color      : 'green',
@@ -82,35 +126,6 @@ const styles = StyleSheet.create({
         marginRight: 80,
 
     },
-    buttonGroupContainer: {
-        backgroundColor: "blue",
-        color          : "yellow",
-        textAlign      : "center", // paddingVertical : 5,
-        marginBottom   : 10,
-        width          : 300,
-    },
-    video               : {
-        width : 100,
-        height: 100,
-    },
-    buttonContainer     : {
-        flex           : 1,
-        backgroundColor: "blue",
-        flexDirection  : 'column',
-        alignItems     : 'center',
-    },
-    button              : {
-        width          : 250,
-        height         : 60,
-        marginBottom   : 20,
-        backgroundColor: "mediumturquoise",
-
-    },
-    checkBox            : {
-        backgroundColor: "blue"
-    },
-
-
 })
 
 export default Quest02SkillLevelScreen;
