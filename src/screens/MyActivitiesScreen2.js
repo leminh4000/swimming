@@ -14,134 +14,13 @@ import {
     HeaderButton,
     HeaderButtons,
 } from "react-navigation-header-buttons";
+import Quest02SkillLevelScreen from "./Quest02SkillLevelScreen";
+import {HeaderTitle} from "react-navigation-stack";
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
 
 
-const MyActivitiesScreen = ({navigation}) => {
-    /*const state = [
-        {
-            "_id"     : "633fe8dd0b2ff2e88eabbdea",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "_id"     : "633fe8dd0b2ff2e88eabbdeb",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-    {
-            "_id"     : "633fe8dd0b2ff2a88eabbdea",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "_id"     : "633fe8dd0b2ff2e88eabbdhb",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-    ];*/
-
+const MyActivitiesScreen2 = ({navigation}) => {
     const [visible, setVisible] = useState(false);
 
     const hideMenu = () => setVisible(false);
@@ -217,11 +96,30 @@ const MyActivitiesScreen = ({navigation}) => {
     < />
 };
 
-// MyActivitiesScreen.navigationOptions = () => {
-//     return {
-//         header: () => false,
-//     }
-// }
+MyActivitiesScreen2.navigationOptions = (navData) => {
+    return {
+        headerTitle: "",
+        headerLeft : () => {
+            return (
+                <View style={{flexDirection: "row"}}>
+
+                    <Avatar
+                        source={require("../../assets/goswim.png")}
+                        size="small"
+                        rounded
+                        onPress={() => console.log("Works!")}
+                        activeOpacity={0.1}
+
+                    />
+                    <View>
+                        <Text style={styles.textHeader}>Chào {useContext(AuthContext).state.username}</Text>
+                        <Text style={styles.textHeaderSmall}>Hôm nay {new Date().toLocaleDateString('en-GB')}</Text>
+                    </View>
+                </View>
+            );
+        },
+    };
+};
 
 
 const styles = StyleSheet.create({
@@ -353,4 +251,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default MyActivitiesScreen;
+export default MyActivitiesScreen2;

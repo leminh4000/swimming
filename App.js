@@ -23,12 +23,15 @@ import Quest02SkillLevelScreen from "./src/screens/Quest02SkillLevelScreen";
 import Quest03SkillLevelScreen from "./src/screens/Quest03SkillLevelScreen";
 import WorkoutVideoListScreen from "./src/screens/WorkoutVideoListScreen";
 import ResolveQuestScreen from "./src/screens/ResolveQuestScreen";
-import {SimpleLineIcons} from '@expo/vector-icons';
+import {MaterialCommunityIcons, SimpleLineIcons} from '@expo/vector-icons';
 import {Feather} from '@expo/vector-icons';
 import {AntDesign} from '@expo/vector-icons';
 import PerformanceScreen from "./src/screens/PerformanceScreen";
 import HistoryScreen from "./src/screens/HistoryScreen";
 import {LogBox} from "react-native";
+import HomeScreen from "./src/screens/HomeScreen";
+import MyActivitiesScreen2 from "./src/screens/MyActivitiesScreen2";
+import MyActivitiesScreen3 from "./src/screens/MyActivitiesScreen3";
 
 
 const switchNavigator = createSwitchNavigator({
@@ -51,13 +54,13 @@ const switchNavigator = createSwitchNavigator({
                     },
                 }),
             Quest02SkillLevel: {
-                screen: Quest02SkillLevelScreen,
+                screen           : Quest02SkillLevelScreen,
                 navigationOptions: {
                     headerShown: false,
                 },
             },
             Quest03SkillLevel: {
-                screen: Quest03SkillLevelScreen,
+                screen           : Quest03SkillLevelScreen,
                 navigationOptions: {
                     headerShown: false,
                 },
@@ -69,21 +72,89 @@ const switchNavigator = createSwitchNavigator({
             },
         }),
     mainFlow    : createBottomTabNavigator({
+
+        Home      : {
+            screen           : createStackNavigator({
+                Home: HomeScreen,
+            }, {
+                defaultNavigationOptions: {
+                    headerStyle     : {
+                        backgroundColor: "#83B9FF",
+                    },
+                    headerTitleStyle: {
+                        fontWeight: "bold",
+                        color     : "#FFF",
+                    },
+                    headerTintColor : "#FFF",
+                },
+            }),
+            navigationOptions: {
+                tabBarIcon : ({
+                                  focused,
+                                  tintColor
+                              }) => (<Feather name="home" size={24}
+                                              focused={focused}
+                                              color={tintColor}/>),
+                headerShown: true,
+            }
+        },
         Activities: {
             screen           : createStackNavigator({
-                MyActivities  : MyActivitiesScreen,
+                MyActivities  : createMaterialTopTabNavigator({
+                    MyActivitiesScreen1: {
+                        screen           : MyActivitiesScreen,
+                        navigationOptions: {
+                            tabBarLabel: "Hôm nay",
+                        },
+                    },
+                    MyActivitiesScreen2: {
+                        screen           : MyActivitiesScreen2,
+                        navigationOptions: {
+                            tabBarLabel: "Tuần này",
+                        },
+                    },
+                    MyActivitiesScreen3: {
+                        screen           : MyActivitiesScreen3,
+                        navigationOptions: {
+                            tabBarLabel: "Tháng này",
+                        },
+                    },
+                }, {
+                    tabBarOptions: {
+                        showIcon: true,
+
+                        style: {
+                            // backgroundColor: "white",
+                            // marginTop      : 28,
+                        },
+                    },
+                }),
                 ActivityDetail: ActivityDetailScreen,
+            }, {
+                defaultNavigationOptions: {
+                    headerTitle     : "Hoạt động",
+                    headerStyle     : {
+                        backgroundColor: "#83B9FF",
+                    },
+                    headerTitleStyle: {
+                        fontWeight: "bold",
+                        color     : "#FFF",
+                    },
+                    headerTintColor : "#FFF",
+                },
             }),
             navigationOptions: {
                 tabBarLabel: 'My Activities',
                 tabBarIcon : ({
-                                  color,
-                                  size
+                                  focused,
+                                  tintColor
                               }) => (
-                    <Feather name="activity" size={24} color="green"/>),
+                    <MaterialCommunityIcons name="swim" size={24}
+                                            focused={focused}
+                                            color={tintColor}/>),
             }
         },
-        Coach     : {
+        /*Coach     : {
             screen           : CoachScreen,
             navigationOptions: {
                 tabBarLabel: 'Coach',
@@ -93,8 +164,8 @@ const switchNavigator = createSwitchNavigator({
                               }) => (<SimpleLineIcons name="book-open" size={24}
                                                       color="green"/>),
             }
-        },
-        Profile   : {
+        },*/
+        Profile: {
             screen           : createMaterialTopTabNavigator({
                 Performance: {
                     screen           : PerformanceScreen,
@@ -119,20 +190,31 @@ const switchNavigator = createSwitchNavigator({
                     showIcon: true,
 
                     style: {
-                        backgroundColor: "#006600",
-                        marginTop      : 28,
+                        // backgroundColor: "#006600",
+                        // marginTop      : 28,
                     },
                 },
             }),
             navigationOptions: {
                 tabBarLabel: "Profile",
                 tabBarIcon : ({
-                                  color,
-                                  size
-                              }) => (<AntDesign name="profile" size={24}
-                                                color="green"/>),
+                                  focused,
+                                  tintColor
+                              }) => (<Feather name="align-center" size={24}
+                                              focused={focused}
+                                              color={tintColor}/>),
             },
         },
+    }, {
+        defaultNavigationOptions: {
+            tabBarOptions: {
+                activeTintColor  : 'white',
+                inactiveTintColor: 'gray',
+                showLabel        : false,
+                style            : {backgroundColor: '#145BB6'}
+            },
+
+        }
     }),
     WorkoutVideo: WorkoutVideoListScreen,
 });

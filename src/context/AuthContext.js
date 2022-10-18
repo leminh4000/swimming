@@ -8,7 +8,8 @@ const authReducer = (state, action) => {
         case 'add_error':
             return {...state, errorMessage: action.payload};
         case 'signin':
-            return {...state, errorMessage: '', token: action.payload};
+            console.log('action.payload', action.payload);
+            return {...state, errorMessage: '', token: action.payload.token, username: action.payload.username,};
         case 'clear_error_message':
             return {...state, errorMessage: ''};
         case 'signout':
@@ -21,8 +22,9 @@ const authReducer = (state, action) => {
 const tryLocalSignin = dispatch => async () => {
     // await AsyncStorage.removeItem('token');
     const token = await AsyncStorage.getItem('token');
+    const username = await AsyncStorage.getItem('username');
     if (token) {
-        dispatch({type: 'signin', payload: token});
+        dispatch({type: 'signin', payload: {token, username}});
         navigate('ResolveQuest');
     } else {
         navigate('loginFlow');
@@ -41,7 +43,8 @@ const signup = dispatch => async ({username, email, password}) => {
                 password
             });
             await  AsyncStorage.setItem('token', response.data.token);
-            dispatch({type: 'signin', data: response.data.token});
+            await  AsyncStorage.setItem('username', username);
+            dispatch({type: 'signin', payload: {token:response.data.token, username}});
 
             navigate('questionFlow');
         } catch (err) {
@@ -57,7 +60,9 @@ const signin = (dispatch)  => async ({username, password}) => {
             password
         });
         await  AsyncStorage.setItem('token', response.data.token);
-        dispatch({type: 'signin', data: response.data.token});
+        await  AsyncStorage.setItem('username', username);
+
+        dispatch({type: 'signin', payload: {token:response.data.token, username}});
 
         navigate('ResolveQuest');
     } catch (err) {
