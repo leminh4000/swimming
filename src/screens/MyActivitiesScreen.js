@@ -16,6 +16,9 @@ import {
 } from "react-navigation-header-buttons";
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
+import {Context as ArchivementContext} from "../context/ArchivementContext";
+import Spacer from "../components/Spacer";
+import ArchivementTable from "../components/ArchivementTable";
 
 
 const MyActivitiesScreen = ({navigation}) => {
@@ -154,7 +157,14 @@ const MyActivitiesScreen = ({navigation}) => {
         fetchActivities,
         addActivities,
     } = useContext(ActivityContext);
+
+    let archivementContext = useContext(ArchivementContext);
+    const {
+        fetchArchivements
+    } = archivementContext;
+
     const handleDocumentSelection = async () => {
+        console.log('handleDocumentSelection');
         let result = await DocumentPicker.getDocumentAsync({});
         // alert(result.uri);
         console.log(result);
@@ -184,13 +194,21 @@ const MyActivitiesScreen = ({navigation}) => {
             }
 
         });
-        hideMenu();
+        // hideMenu();
     }
+    const fetch=()=>{
+        fetchActivities();
+        fetchArchivements();
+    };
 
     return <>
-        <NavigationEvents onWillFocus={fetchActivities}/>
+        <NavigationEvents onWillFocus={fetch}/>
 
         <View style={styles.container}>
+            <ArchivementTable title="PERSONAL BEST" results={archivementContext.state} onImportPress={handleDocumentSelection}/>
+        </View>
+
+        {/*<View style={styles.container}>
             <View style={styles.menuContainer}>
                 <Menu
                     visible={visible}
@@ -209,19 +227,12 @@ const MyActivitiesScreen = ({navigation}) => {
                         Mannual Activities</MenuItem>
                 </Menu>
             </View>
-            {/*<Text style={{fontSize: 48}}>Last Activities</Text>*/}
             <View style={styles.mainContainer}>
                 <LastActivities activities={state} title="Last Activities"/>
             </View>
-        </View>
+        </View>*/}
     < />
 };
-
-// MyActivitiesScreen.navigationOptions = () => {
-//     return {
-//         header: () => false,
-//     }
-// }
 
 
 const styles = StyleSheet.create({

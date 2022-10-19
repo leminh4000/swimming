@@ -14,14 +14,6 @@ const PerformanceScreen = () => {
     return <>
         <NavigationEvents onWillFocus={fetchArchivements}/>
         <View style={styles.container}>
-            <Spacer/>
-            <Spacer/>
-            <Spacer/>
-            <Text style={{
-                marginLeft: 20,
-                color     : "gray"
-            }}>All Badges</Text>
-            <Spacer/>
             <ArchivementTable title="PERSONAL BEST" results={state}/>
         </View>
     </>
