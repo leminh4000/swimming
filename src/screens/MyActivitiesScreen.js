@@ -238,7 +238,6 @@ const styles = StyleSheet.create({
     },
     container    : {
         flex           : 8,
-        backgroundColor: 'midnightblue',
         flexDirection  : 'column',
         // alignItems     : 'center',
     },

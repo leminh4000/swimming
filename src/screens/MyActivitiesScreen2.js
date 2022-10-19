@@ -70,25 +70,7 @@ const MyActivitiesScreen2 = ({navigation}) => {
         <NavigationEvents onWillFocus={fetchActivities}/>
 
         <View style={styles.container}>
-            <View style={styles.menuContainer}>
-                <Menu
-                    visible={visible}
-                    anchor={
-                        <Text style={styles.menuButton} onPress={showMenu}>
-                            + Log Activity
-                        </Text>
-                    }
-                    onRequestClose={hideMenu}>
-                    <MenuItem
-                        onPress={handleDocumentSelection}>Add
-                        file .FIT</MenuItem>
-                    <MenuDivider/>
-                    <MenuItem
-                        onPress={() => console.log('Clicked Menu item 2')}>Log
-                        Mannual Activities</MenuItem>
-                </Menu>
-            </View>
-            {/*<Text style={{fontSize: 48}}>Last Activities</Text>*/}
+
             <View style={styles.mainContainer}>
                 <LastActivities activities={state} title="Last Activities"/>
             </View>
@@ -136,7 +118,6 @@ const styles = StyleSheet.create({
     },
     container    : {
         flex           : 8,
-        backgroundColor: 'midnightblue',
         flexDirection  : 'column',
         // alignItems     : 'center',
     },
@@ -224,7 +205,6 @@ const styles = StyleSheet.create({
 
     },
     buttonGroupContainer: {
-        backgroundColor: "blue",
         color          : "yellow",
         textAlign      : "center", // paddingVertical : 5,
         marginBottom   : 10,

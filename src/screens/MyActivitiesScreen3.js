@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
     },
     container    : {
         flex           : 8,
-        backgroundColor: 'midnightblue',
         flexDirection  : 'column',
         // alignItems     : 'center',
     },
@@ -225,7 +224,6 @@ const styles = StyleSheet.create({
 
     },
     buttonGroupContainer: {
-        backgroundColor: "blue",
         color          : "yellow",
         textAlign      : "center", // paddingVertical : 5,
         marginBottom   : 10,
@@ -237,7 +235,6 @@ const styles = StyleSheet.create({
     },
     buttonContainer     : {
         flex           : 1,
-        backgroundColor: "blue",
         flexDirection  : 'column',
         alignItems     : 'center',
     },
