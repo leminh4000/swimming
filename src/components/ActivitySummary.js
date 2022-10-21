@@ -18,7 +18,7 @@ const ActivitySummary = ({activity}) => {
         <View style={styles.container}>
             <View style={styles.containerHeader}>
                 <Avatar
-                    source={require("../../assets/manswim.jpeg")}
+                    source={require("../../assets/avatar1.jpg")}
                     size="small"
                     rounded
                     onPress={() => console.log("Works!")}

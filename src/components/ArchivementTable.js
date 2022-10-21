@@ -9,6 +9,7 @@ const ArchivementTable = ({
                               navigation,
                               onImportPress,
                           }) => {
+
     return (<View style={styles.container}>
         {/*for testing purposes*/}
         {/*<NavigationEvents onWillFocus={() => {

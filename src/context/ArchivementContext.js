@@ -16,10 +16,23 @@ const fetchArchivements = (dispatch) => async () => {
     const response = await swimApi.get('/archivements2?category=speed', {});
     const response2 = await swimApi.get('/archivements2?category=distance', {});
     console.log("response.data", response.data);
+    const results = [...response.data,...response2.data];
+    // console.log("results", results);
+    for (const archive of results) {
+        if (archive.category === "speed") {
+            console.log('archive.value * 1000', archive.value * 1000);
+            archive.value = new Date(archive.value * 1000).toISOString().substr(14, 5);
+        } else if (archive.category === "distance"){
+            archive.value += " km";
+        }
+    }
+    console.log("results", results);
     dispatch({
         type   : 'fetch_archivements',
-        payload: [...response.data,...response2.data],
+        payload:results,
     });
+
+
 
     // navigate('mainFlow');
 }

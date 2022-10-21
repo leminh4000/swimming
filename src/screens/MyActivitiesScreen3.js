@@ -31,65 +31,14 @@ const MyActivitiesScreen3 = ({navigation}) => {
 
     const {
         state,
-        fetchActivities,
+        fetchMonthActivities,
         addActivities,
     } = useContext(ActivityContext);
-    const handleDocumentSelection = async () => {
-        let result = await DocumentPicker.getDocumentAsync({});
-        // alert(result.uri);
-        console.log(result);
-        const b64string = await FileSystem.readAsStringAsync(result.uri, {encoding: FileSystem.EncodingType.Base64});
-        const content = Buffer.from(b64string, 'base64');
-        // console.log(content);
-
-        // Create a FitParser instance (options argument is optional)
-        const FitParser = require('fit-file-parser').default;
-        const fitParser = new FitParser({
-            force             : true,
-            speedUnit         : 'km/h',
-            lengthUnit        : 'km',
-            temperatureUnit   : 'kelvin',
-            elapsedRecordField: true,
-            mode              : 'cascade',
-        });
-
-        // Parse your file
-        fitParser.parse(content, function (error, data) {
-            // Handle result of parse method
-            if (error) {
-                console.error(error);
-            } else {
-                // console.log(JSON.stringify(data));
-                addActivities(data.activity);
-            }
-
-        });
-        hideMenu();
-    }
 
     return <>
-        <NavigationEvents onWillFocus={fetchActivities}/>
+        <NavigationEvents onWillFocus={fetchMonthActivities}/>
 
         <View style={styles.container}>
-            <View style={styles.menuContainer}>
-                <Menu
-                    visible={visible}
-                    anchor={
-                        <Text style={styles.menuButton} onPress={showMenu}>
-                            + Log Activity
-                        </Text>
-                    }
-                    onRequestClose={hideMenu}>
-                    <MenuItem
-                        onPress={handleDocumentSelection}>Add
-                        file .FIT</MenuItem>
-                    <MenuDivider/>
-                    <MenuItem
-                        onPress={() => console.log('Clicked Menu item 2')}>Log
-                        Mannual Activities</MenuItem>
-                </Menu>
-            </View>
-            {/*<Text style={{fontSize: 48}}>Last Activities</Text>*/}
             <View style={styles.mainContainer}>
                 <LastActivities activities={state} title="Last Activities"/>
             </View>

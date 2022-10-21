@@ -30,7 +30,7 @@ const MyActivitiesScreen2 = ({navigation}) => {
 
     const {
         state,
-        fetchActivities,
+        fetchWeekActivities,
         addActivities,
     } = useContext(ActivityContext);
     const handleDocumentSelection = async () => {
@@ -67,7 +67,7 @@ const MyActivitiesScreen2 = ({navigation}) => {
     }
 
     return <>
-        <NavigationEvents onWillFocus={fetchActivities}/>
+        <NavigationEvents onWillFocus={fetchWeekActivities}/>
 
         <View style={styles.container}>
 
