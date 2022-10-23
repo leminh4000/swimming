@@ -72,7 +72,7 @@ const MyActivitiesScreen2 = ({navigation}) => {
         <View style={styles.container}>
 
             <View style={styles.mainContainer}>
-                <LastActivities activities={state} title="Last Activities"/>
+                <LastActivities activities={state.activities} title="Last Activities"/>
             </View>
         </View>
     < />

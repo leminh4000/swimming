@@ -10,40 +10,41 @@ const ArchivementTable = ({
                               onImportPress,
                           }) => {
 
-    return (<View style={styles.container}>
-        {/*for testing purposes*/}
-        {/*<NavigationEvents onWillFocus={() => {
+    return (
+        <View style={styles.container}>
+            {/*for testing purposes*/}
+            {/*<NavigationEvents onWillFocus={() => {
                 console.log("title", title);
                 console.log(results);
             }}/>*/}
-        <View style={styles.containerTable}>
-            <View style={styles.containerTitle}>
-                <Text style={styles.title}>{title}</Text>
-            </View>
-            <FlatList
-                vertical
-                data={results}
-                keyExtractor={(result) => result._id}
-                renderItem={({item}) => {
-                    return (<View style={styles.containerRow}>
-                        <Text style={styles.textType}>{item.type}</Text>
-                        <Text style={styles.textValue}>{item.value}</Text>
-                    </View>);
-                }}/>
-            <View style={styles.containerAvatarImport}>
-                <TouchableOpacity onPress={onImportPress}>
-                    <Avatar
-                        source={require("../../assets/import.png")}
-                        size={100}
-                        rounded
-                        activeOpacity={0.1}
-                        containerStyle={styles.avatarImport}
+            <View style={styles.containerTable}>
+                <View style={styles.containerTitle}>
+                    <Text style={styles.title}>{title}</Text>
+                </View>
+                <FlatList
+                    vertical
+                    data={results}
+                    keyExtractor={(result) => result._id}
+                    renderItem={({item}) => {
+                        return (<View style={styles.containerRow}>
+                            <Text style={styles.textType}>{item.type}</Text>
+                            <Text style={styles.textValue}>{item.value}</Text>
+                        </View>);
+                    }}/>
+                <View style={styles.containerAvatarImport}>
+                    <TouchableOpacity onPress={onImportPress}>
+                        <Avatar
+                            source={require("../../assets/import.png")}
+                            size={100}
+                            rounded
+                            activeOpacity={0.1}
+                            containerStyle={styles.avatarImport}
 
-                    />
-                </TouchableOpacity>
+                        />
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    </View>);
+        </View>);
 };
 
 const styles = StyleSheet.create({
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         fontSize    : 18,
         fontWeight  : 'bold',
         marginLeft  : 10,
-        marginBottom: 5,
+        // marginBottom: 5,
         color       : 'white', // foregroundColor: 'gray',
 
     },
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         color     : 'white',
     },
     containerTable       : {
-        marginBottom: 10,
+        // marginBottom: 10,
         width       : '95%',
     },
     container            : {
@@ -88,8 +89,6 @@ const styles = StyleSheet.create({
         // marginBottom: 10,
         backgroundColor: '#494949',
         borderRadius   : 0,
-
-
     },
 
 });

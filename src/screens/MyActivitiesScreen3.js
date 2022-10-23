@@ -22,13 +22,6 @@ import {Context as AuthContext} from "../context/AuthContext";
 
 const MyActivitiesScreen3 = ({navigation}) => {
 
-    const [visible, setVisible] = useState(false);
-
-    const hideMenu = () => setVisible(false);
-
-    const showMenu = () => setVisible(true);
-
-
     const {
         state,
         fetchMonthActivities,
@@ -40,7 +33,7 @@ const MyActivitiesScreen3 = ({navigation}) => {
 
         <View style={styles.container}>
             <View style={styles.mainContainer}>
-                <LastActivities activities={state} title="Last Activities"/>
+                <LastActivities activities={state.activities} title="Last Activities"/>
             </View>
         </View>
     < />

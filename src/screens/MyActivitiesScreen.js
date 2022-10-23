@@ -2,23 +2,16 @@ import React, {useCallback, useContext, useState} from 'react'
 
 import {View, StyleSheet, Text, Button} from 'react-native';
 import {Context as ActivityContext} from "../context/ActivityContext";
-import LastActivities from "../components/LastActivities";
 import {NavigationEvents} from "react-navigation";
-import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
 import {Buffer} from "buffer";
-import {Ionicons} from "@expo/vector-icons";
-import {
-    Item,
-    HeaderButton,
-    HeaderButtons,
-} from "react-navigation-header-buttons";
-import {Avatar} from "@rneui/themed";
-import {Context as AuthContext} from "../context/AuthContext";
 import {Context as ArchivementContext} from "../context/ArchivementContext";
-import Spacer from "../components/Spacer";
 import ArchivementTable from "../components/ArchivementTable";
+import AchivementIndex from "../components/AchivementIndex";
+import AchivementBadge from "../components/AchivementBadge";
+
+
 
 
 const MyActivitiesScreen = ({navigation}) => {
@@ -145,12 +138,6 @@ const MyActivitiesScreen = ({navigation}) => {
         },
     ];*/
 
-    const [visible, setVisible] = useState(false);
-
-    const hideMenu = () => setVisible(false);
-
-    const showMenu = () => setVisible(true);
-
 
     const {
         state,
@@ -160,8 +147,53 @@ const MyActivitiesScreen = ({navigation}) => {
 
     let archivementContext = useContext(ArchivementContext);
     const {
-        fetchArchivements
+        fetchArchivements,
+        fetchLevel,
     } = archivementContext;
+
+    function getBlurRadiuses() {
+        console.log("getBlurRadiuses archivementContext.state.level",archivementContext.state.level);
+        const level=archivementContext.state.level;
+        switch (level) {
+            case 0: return [
+                2,
+                2,
+                2,
+                2
+            ];
+            case 1: return [
+                0,
+                2,
+                2,
+                2
+            ];
+            case 2: return [
+                0,
+                0,
+                2,
+                2,
+            ];
+            case 3: return [
+                0,
+                0,
+                0,
+                2
+            ];
+            case 4: return [
+                0,
+                0,
+                0,
+                0,
+            ];
+
+        }
+        return [
+            2,
+            2,
+            2,
+            2,
+        ];
+    }
 
     const handleDocumentSelection = async () => {
         console.log('handleDocumentSelection');
@@ -191,21 +223,34 @@ const MyActivitiesScreen = ({navigation}) => {
             } else {
                 // console.log(JSON.stringify(data));
                 addActivities(data.activity);
+                if (state.newLevel){
+                    console.log(`Bạn dành được huy chương level ${state.newLevel}`);
+                }
             }
 
         });
         // hideMenu();
     }
     const fetch=()=>{
-        fetchActivities();
+        //fetchActivities();
         fetchArchivements();
+        fetchLevel();
+    };
+    const arIndex={
+        "avg_heart_rate": "115 bpm",
+        "enhanced_avg_speed": "2p:50m",
+        "total_calories": "288 calories",
+        "total_distance": "0.0016 km",
+        "total_timer_time": "00:34 phút"
     };
 
     return <>
-        <NavigationEvents onWillFocus={fetch}/>
 
+        <NavigationEvents onWillFocus={fetch}/>
+        <AchivementIndex result={arIndex}/>
+        <AchivementBadge blurRadiuses={getBlurRadiuses()}/>
         <View style={styles.container}>
-            <ArchivementTable title="PERSONAL BEST" results={archivementContext.state} onImportPress={handleDocumentSelection}/>
+            <ArchivementTable title="PERSONAL BEST" results={archivementContext.state.archivements} onImportPress={handleDocumentSelection} />
         </View>
 
         {/*<View style={styles.container}>
