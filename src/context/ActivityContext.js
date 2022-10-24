@@ -5,13 +5,13 @@ import {useState} from "react";
 const activityReducer = (state, action) => {
     switch (action.type) {
         case 'fetch_activities':
-            return {activities: action.payload};
+            return {...state,activities: action.payload};
         case 'add_activities':
-            return {
+            return {...state,
                 activities: [
                     action.payload.activity
                 ],
-                newLevel  : action.payload.activity.level
+                newLevel  : action.payload.newLevel,
             };
         default :
             return state;
@@ -37,32 +37,33 @@ async function setActivities3(firstDay, dispatch) {
 }
 
 const fetchWeekActivities = (dispatch) => async () => {
-    console.log("fetchWeekActivities");
-    const curr = new Date; // get current date
+    // console.log("fetchWeekActivities");
+    const curr = new Date; // get current dateString
     const first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
 
     const firstDay = new Date(curr.setDate(first));
     firstDay.setHours(0, 0, 0, 0);
-    console.log("firstDay", firstDay.toISOString());
+    // console.log("firstDay", firstDay.toISOString());
 
     await setActivities3(firstDay, dispatch);
 }
 const fetchMonthActivities = (dispatch) => async () => {
-    console.log("fetchMonthActivities");
+    // console.log("fetchMonthActivities");
     const date = new Date(), y = date.getFullYear(), m = date.getMonth();
     const firstDay = new Date(y, m, 1);
     firstDay.setHours(0, 0, 0, 0);
-    console.log("firstDay", firstDay.toISOString());
+    // console.log("firstDay", firstDay.toISOString());
 
     await setActivities3(firstDay, dispatch);
 }
 const addActivities = (dispatch) => async (activity) => {
     const response = await swimApi.post('/activities', activity);
-    console.log("response.data", response.data);
+    console.log("addActivities response.data", response.data);
     dispatch({
         type   : 'add_activities',
         payload: response.data
     });
+    return response.data.newLevel;
 
 }
 

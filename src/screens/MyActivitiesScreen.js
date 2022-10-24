@@ -1,6 +1,6 @@
-import React, {useCallback, useContext, useState} from 'react'
+import React, {useContext} from 'react'
 
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Button, Alert, ScrollView} from 'react-native';
 import {Context as ActivityContext} from "../context/ActivityContext";
 import {NavigationEvents} from "react-navigation";
 import * as DocumentPicker from "expo-document-picker";
@@ -10,8 +10,7 @@ import {Context as ArchivementContext} from "../context/ArchivementContext";
 import ArchivementTable from "../components/ArchivementTable";
 import AchivementIndex from "../components/AchivementIndex";
 import AchivementBadge from "../components/AchivementBadge";
-
-
+import {Context as AuthContext} from "../context/AuthContext";
 
 
 const MyActivitiesScreen = ({navigation}) => {
@@ -152,46 +151,51 @@ const MyActivitiesScreen = ({navigation}) => {
     } = archivementContext;
 
     function getBlurRadiuses() {
-        console.log("getBlurRadiuses archivementContext.state.level",archivementContext.state.level);
-        const level=archivementContext.state.level;
+        console.log("getBlurRadiuses archivementContext.state.level", archivementContext.state.level);
+        const level = archivementContext.state.level;
         switch (level) {
-            case 0: return [
-                2,
-                2,
-                2,
-                2
-            ];
-            case 1: return [
-                0,
-                2,
-                2,
-                2
-            ];
-            case 2: return [
-                0,
-                0,
-                2,
-                2,
-            ];
-            case 3: return [
-                0,
-                0,
-                0,
-                2
-            ];
-            case 4: return [
-                0,
-                0,
-                0,
-                0,
-            ];
+            case 0:
+                return [
+                    4,
+                    4,
+                    4,
+                    4
+                ];
+            case 1:
+                return [
+                    0,
+                    4,
+                    4,
+                    4
+                ];
+            case 4:
+                return [
+                    0,
+                    0,
+                    4,
+                    4,
+                ];
+            case 3:
+                return [
+                    0,
+                    0,
+                    0,
+                    4
+                ];
+            case 4:
+                return [
+                    0,
+                    0,
+                    0,
+                    0,
+                ];
 
         }
         return [
-            2,
-            2,
-            2,
-            2,
+            4,
+            4,
+            4,
+            4,
         ];
     }
 
@@ -216,14 +220,24 @@ const MyActivitiesScreen = ({navigation}) => {
         });
 
         // Parse your file
-        fitParser.parse(content, function (error, data) {
+        fitParser.parse(content, async function (error, data) {
             // Handle result of parse method
             if (error) {
                 console.error(error);
             } else {
                 // console.log(JSON.stringify(data));
-                addActivities(data.activity);
-                if (state.newLevel){
+                const newLevel = await addActivities(data.activity);
+                if (newLevel) {
+                    Alert.alert(
+                        "Chúc mừng",
+                        `Bạn đã dành được huy chương level ${newLevel}`,
+                        [
+                            {
+                                text   : "OK",
+                                onPress: () => console.log("OK Pressed")
+                            }
+                        ]
+                    );
                     console.log(`Bạn dành được huy chương level ${state.newLevel}`);
                 }
             }
@@ -231,73 +245,58 @@ const MyActivitiesScreen = ({navigation}) => {
         });
         // hideMenu();
     }
-    const fetch=()=>{
+    const fetch = () => {
         //fetchActivities();
         fetchArchivements();
         fetchLevel();
     };
-    const arIndex={
-        "avg_heart_rate": "115 bpm",
+    const arIndex = {
+        "avg_heart_rate"    : "115 bpm",
         "enhanced_avg_speed": "2p:50m",
-        "total_calories": "288 calories",
-        "total_distance": "0.0016 km",
-        "total_timer_time": "00:34 phút"
+        "total_calories"    : "288 calories",
+        "total_distance"    : "0.0016 km",
+        "total_timer_time"  : "00:34 phút"
     };
 
+    const today = new Date();
+    const dateString = today.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + today.toLocaleDateString('en-GB');
     return <>
 
         <NavigationEvents onWillFocus={fetch}/>
-        <AchivementIndex result={arIndex}/>
-        <AchivementBadge blurRadiuses={getBlurRadiuses()}/>
-        <View style={styles.container}>
-            <ArchivementTable title="PERSONAL BEST" results={archivementContext.state.archivements} onImportPress={handleDocumentSelection} />
-        </View>
-
-        {/*<View style={styles.container}>
-            <View style={styles.menuContainer}>
-                <Menu
-                    visible={visible}
-                    anchor={
-                        <Text style={styles.menuButton} onPress={showMenu}>
-                            + Log Activity
-                        </Text>
-                    }
-                    onRequestClose={hideMenu}>
-                    <MenuItem
-                        onPress={handleDocumentSelection}>Add
-                        file .FIT</MenuItem>
-                    <MenuDivider/>
-                    <MenuItem
-                        onPress={() => console.log('Clicked Menu item 2')}>Log
-                        Mannual Activities</MenuItem>
-                </Menu>
+        <ScrollView>
+            <View>
+                <AchivementIndex result={arIndex} dateString={dateString}
+                                 username={useContext(AuthContext).state.username}/>
+                <AchivementBadge blurRadiuses={getBlurRadiuses()}/>
+                {/*<View style={styles.container}>*/}
+                <ArchivementTable title="Thành tích cá nhân"
+                                  results={archivementContext.state.archivements}
+                                  onImportPress={handleDocumentSelection}/>
+                {/*</View>*/}
             </View>
-            <View style={styles.mainContainer}>
-                <LastActivities activities={state} title="Last Activities"/>
-            </View>
-        </View>*/}
+        </ScrollView>
     < />
 };
 
 
 const styles = StyleSheet.create({
-    textHeader   : {
-        fontSize  : 18,
-        color     : '#FFFFFF',
-        fontWeight: 'bold',
-        paddingLeft:5,
+    textHeader     : {
+        fontSize   : 18,
+        color      : '#FFFFFF',
+        fontWeight : 'bold',
+        paddingLeft: 5,
     },
-    textHeaderSmall   : {
-        fontSize  : 14,
-        color     : '#FFFFFF',
-        paddingLeft:5,
+    textHeaderSmall: {
+        fontSize   : 14,
+        color      : '#FFFFFF',
+        paddingLeft: 5,
     },
-    container    : {
-        flex           : 8,
-        flexDirection  : 'column',
+    container      : {
+        // flex           : 8,
+        // flexDirection  : 'column',
         // alignItems     : 'center',
     },
-    mainContainer: {
+    mainContainer  : {
         alignItems: 'center',
     },
 
