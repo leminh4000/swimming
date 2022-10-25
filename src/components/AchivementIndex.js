@@ -3,13 +3,13 @@ import {
     View, StyleSheet, Text,
 } from 'react-native';
 import {Avatar} from "@rneui/themed";
+import {FontAwesome} from "@expo/vector-icons";
 
 const AchivementIndex = ({
                              result,
                              username,
                              dateString
                          }) => {
-    console.log("result", result);
 
     return (<View style={styles.container}>
         <View style={styles.containerHeader}>
@@ -17,7 +17,6 @@ const AchivementIndex = ({
                 source={require("../../assets/avatar1.jpg")}
                 size="small"
                 rounded
-                onPress={() => console.log("Works!")}
                 activeOpacity={0.1}
 
             />
@@ -35,6 +34,7 @@ const AchivementIndex = ({
                     ...styles.containerCellBig,
                     backgroundColor: '#FB5049'
                 }}>
+                    <FontAwesome name="heartbeat" size={48} color="white"/>
                     <Text style={styles.cellBig}>{result.avg_heart_rate}
                     </Text>
                 </View>
@@ -90,58 +90,52 @@ const styles = StyleSheet.create({
         // height: 110,
         // margin: 5,
         color   : 'white',
-        fontSize: 21,
+        fontSize: 24,
 
     },
     containerCellBig   : {
-        alignItems  : 'center', // width : 100,
         height      : 110,
         margin      : 5,
         borderRadius: 10,
+        justifyContent: "center",
+        alignItems    : "center",
     },
     containerCell      : {
-        alignItems  : 'center', // width : 100,
-        height      : 50,
-        margin      : 5,
-        borderRadius: 10,
+        height        : 50,
+        margin        : 5,
+        borderRadius  : 10,
+        justifyContent: "center",
+        alignItems    : "center",
     },
     cell               : {
-        // width: 200,
-        // height   : 50,
-        // margin   : 5,
-        color   : 'white',
-        fontSize: 21,
-
-
+        color         : 'white',
+        fontSize      : 24,
     },
     container          : {
         width: '95%', // height        : '20%',
-        // flexDirection : 'row',
-        // justifyContent: 'space-between',
-        // alignItems: 'center',
     },
-    containerHeader: {
-        flexDirection : 'row',
-        marginLeft  : 10,
-        marginBottom: 10,
+    containerHeader    : {
+        flexDirection: 'row',
+        marginLeft   : 10,
+        marginBottom : 10,
     },
 
 
-    image              : {
+    image : {
         width       : 250,
         height      : 120,
         borderRadius: 4,
     },
-    video              : {
+    video : {
         width : 100,
         height: 100,
     },
-    text               : {
+    text  : {
         fontSize: 16,
         weight  : 'bold',
         color   : 'purple',
     },
-    button             : {
+    button: {
         fontSize       : 16,
         weight         : 'bold',
         color          : 'blue',

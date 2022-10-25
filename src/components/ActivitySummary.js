@@ -21,7 +21,6 @@ const ActivitySummary = ({activity}) => {
                     source={require("../../assets/avatar1.jpg")}
                     size="small"
                     rounded
-                    onPress={() => console.log("Works!")}
                     activeOpacity={0.1}
 
                 />

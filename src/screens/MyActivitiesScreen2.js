@@ -2,22 +2,16 @@ import React, {useCallback, useContext, useState} from 'react'
 
 import {View, StyleSheet, Text, Button} from 'react-native';
 import {Context as ActivityContext} from "../context/ActivityContext";
+import {Context as ActivitySummaryContext} from "../context/ActivitySummaryContext";
 import LastActivities from "../components/LastActivities";
 import {NavigationEvents} from "react-navigation";
 import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
 import {Buffer} from "buffer";
-import {Ionicons} from "@expo/vector-icons";
-import {
-    Item,
-    HeaderButton,
-    HeaderButtons,
-} from "react-navigation-header-buttons";
-import Quest02SkillLevelScreen from "./Quest02SkillLevelScreen";
-import {HeaderTitle} from "react-navigation-stack";
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
+import AchivementIndex from "../components/AchivementIndex";
 
 
 const MyActivitiesScreen2 = ({navigation}) => {
@@ -33,46 +27,32 @@ const MyActivitiesScreen2 = ({navigation}) => {
         fetchWeekActivities,
         addActivities,
     } = useContext(ActivityContext);
-    const handleDocumentSelection = async () => {
-        let result = await DocumentPicker.getDocumentAsync({});
-        // alert(result.uri);
-        console.log(result);
-        const b64string = await FileSystem.readAsStringAsync(result.uri, {encoding: FileSystem.EncodingType.Base64});
-        const content = Buffer.from(b64string, 'base64');
-        // console.log(content);
 
-        // Create a FitParser instance (options argument is optional)
-        const FitParser = require('fit-file-parser').default;
-        const fitParser = new FitParser({
-            force             : true,
-            speedUnit         : 'km/h',
-            lengthUnit        : 'km',
-            temperatureUnit   : 'kelvin',
-            elapsedRecordField: true,
-            mode              : 'cascade',
-        });
+    const {
+        fetchWeekActivitiesSummary,
+    } = useContext(ActivitySummaryContext);
 
-        // Parse your file
-        fitParser.parse(content, function (error, data) {
-            // Handle result of parse method
-            if (error) {
-                console.error(error);
-            } else {
-                // console.log(JSON.stringify(data));
-                addActivities(data.activity);
-            }
-
-        });
-        hideMenu();
+    // const arIndex = {
+    //     "avg_heart_rate"    : "115 bpm",
+    //     "enhanced_avg_speed": "2p:50m",
+    //     "total_calories"    : "288 calories",
+    //     "total_distance"    : "0.0016 km",
+    //     "total_timer_time"  : "00:34 phút"
+    // };
+    const fetch=()=>{
+        fetchWeekActivities();
+        fetchWeekActivitiesSummary();
     }
 
     return <>
-        <NavigationEvents onWillFocus={fetchWeekActivities}/>
+        <NavigationEvents onWillFocus={fetch}/>
 
         <View style={styles.container}>
+            <AchivementIndex result={useContext(ActivitySummaryContext).state} dateString={"Tuần này (Garmin activities)"}
+                             username={useContext(AuthContext).state.username}/>
 
             <View style={styles.mainContainer}>
-                <LastActivities activities={state.activities} title="Last Activities"/>
+                <LastActivities activities={state} title="Last Activities"/>
             </View>
         </View>
     < />
@@ -89,7 +69,6 @@ MyActivitiesScreen2.navigationOptions = (navData) => {
                         source={require("../../assets/goswim.png")}
                         size="small"
                         rounded
-                        onPress={() => console.log("Works!")}
                         activeOpacity={0.1}
 
                     />

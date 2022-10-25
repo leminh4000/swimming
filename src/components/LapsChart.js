@@ -13,7 +13,7 @@ const LapsChart = ({activity}) => {
     const data = activity.sessions[0].laps.map(lap => lap.total_timer_time);
     return (
         <View>
-            <Text style={styles.header}>Thời gian bơi mỗi vòng - Lap (10v)</Text>
+            <Text style={styles.header}>Thời gian bơi mỗi vòng</Text>
             <BarChart
                 data={{
                     datasets: [
@@ -31,11 +31,12 @@ const LapsChart = ({activity}) => {
                 height={220}
                 yAxisLabel={''}
                 chartConfig={{
-                    backgroundColor       : '#1cc910',
-                    backgroundGradientFrom: '#eff3ff',
-                    backgroundGradientTo  : '#efefef',
+                    backgroundColor       : 'white',
+                    backgroundGradientFrom: 'white',
+                    backgroundGradientTo  : 'white',
                     decimalPlaces         : 0,
-                    color                 : (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                    color                 : (opacity = 1) => `#1B9BAA`,
+                    labelColor            : (opacity = 1) => `#77838F`,
                     style                 : {
                         borderRadius: 1,
                     },
@@ -54,6 +55,10 @@ const styles = StyleSheet.create({
     container: {
         flex         : 1,
         flexDirection: 'row',
+    },
+    header: {
+        color         : '#1E2022',
+        fontSize : '14px',
     },
     button   : {
         flex           : 1,

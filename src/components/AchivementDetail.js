@@ -7,7 +7,6 @@ import {
 import {Icon} from "react-native-elements";
 
 const AchivementDetail = ({achivement}) => {
-    console.log("achivement",achivement)
     return (
         <View style={styles.container}>
             <Text>{achivement.type}</Text>

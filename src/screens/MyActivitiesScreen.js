@@ -11,136 +11,13 @@ import ArchivementTable from "../components/ArchivementTable";
 import AchivementIndex from "../components/AchivementIndex";
 import AchivementBadge from "../components/AchivementBadge";
 import {Context as AuthContext} from "../context/AuthContext";
+import LastActivities from "../components/LastActivities";
 
 
 const MyActivitiesScreen = ({navigation}) => {
-    /*const state = [
-        {
-            "_id"     : "633fe8dd0b2ff2e88eabbdea",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "_id"     : "633fe8dd0b2ff2e88eabbdeb",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-    {
-            "_id"     : "633fe8dd0b2ff2a88eabbdea",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "_id"     : "633fe8dd0b2ff2e88eabbdhb",
-            "type"    : "Garmin",
-            "sessions": [
-                {
-                    "timestamp"         : "2022-09-29T23:41:04.000Z",
-                    "total_distance"    : 1000,
-                    "total_timer_time"  : 100,
-                    "enhanced_avg_speed": "100m/2000",
-                    "laps"              : [
-                        {
-                            "timestamp"         : "2022-10-05T22:58:27.000Z",
-                            "start_time"        : "2022-10-05T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 18,
-                            "num_lengths"       : 2
-                        },
-                        {
-                            "timestamp"         : "2022-10-06T22:58:27.000Z",
-                            "start_time"        : "2022-10-06T22:56:33.000Z",
-                            "total_elapsed_time": 114.31,
-                            "total_timer_time"  : 114.31,
-                            "total_calories"    : 19,
-                            "num_lengths"       : 2
-                        }
-                    ]
-                }
-            ]
-        },
-    ];*/
-
-
     const {
         state,
-        fetchActivities,
+        fetchDayActivities,
         addActivities,
     } = useContext(ActivityContext);
 
@@ -151,7 +28,7 @@ const MyActivitiesScreen = ({navigation}) => {
     } = archivementContext;
 
     function getBlurRadiuses() {
-        console.log("getBlurRadiuses archivementContext.state.level", archivementContext.state.level);
+        // console.log("getBlurRadiuses archivementContext.state.level", archivementContext.state.level);
         const level = archivementContext.state.level;
         switch (level) {
             case 0:
@@ -200,10 +77,10 @@ const MyActivitiesScreen = ({navigation}) => {
     }
 
     const handleDocumentSelection = async () => {
-        console.log('handleDocumentSelection');
+        // console.log('handleDocumentSelection');
         let result = await DocumentPicker.getDocumentAsync({});
         // alert(result.uri);
-        console.log(result);
+        // console.log(result);
         const b64string = await FileSystem.readAsStringAsync(result.uri, {encoding: FileSystem.EncodingType.Base64});
         const content = Buffer.from(b64string, 'base64');
         // console.log(content);
@@ -246,7 +123,7 @@ const MyActivitiesScreen = ({navigation}) => {
         // hideMenu();
     }
     const fetch = () => {
-        //fetchActivities();
+        fetchDayActivities();
         fetchArchivements();
         fetchLevel();
     };
@@ -265,8 +142,11 @@ const MyActivitiesScreen = ({navigation}) => {
         <NavigationEvents onWillFocus={fetch}/>
         <ScrollView>
             <View>
-                <AchivementIndex result={arIndex} dateString={dateString}
-                                 username={useContext(AuthContext).state.username}/>
+                <View style={styles.mainContainer}>
+                    <LastActivities activities={state} title="Last Activities"/>
+                </View>
+                {/*<AchivementIndex result={arIndex} dateString={dateString}
+                                 username={useContext(AuthContext).state.username}/>*/}
                 <AchivementBadge blurRadiuses={getBlurRadiuses()}/>
                 {/*<View style={styles.container}>*/}
                 <ArchivementTable title="Thành tích cá nhân"

@@ -4,32 +4,30 @@ import {View, StyleSheet, Text, Button, TouchableOpacity} from 'react-native';
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
 import AchivementIndex from "../components/AchivementIndex";
+import LastActivities from "../components/LastActivities";
+import {Context as ActivityContext} from "../context/ActivityContext";
+import {NavigationEvents} from "react-navigation";
 
 
 const HomeScreen = ({navigation}) => {
-    const arIndex = {
-        "avg_heart_rate"    : "115 bpm",
-        "enhanced_avg_speed": "2p:50m",
-        "total_calories"    : "288 calories",
-        "total_distance"    : "0.0016 km",
-        "total_timer_time"  : "00:34 phút"
-    };
-    const today = new Date();
-    const dateString = today.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + today.toLocaleDateString('en-GB');
+    const {
+        state,
+        getLastActivities,
+    } = useContext(ActivityContext);
 
     return <View style={styles.container}>
-        <Text style={{
-            color       : "#145BB6",
-            fontSize    : 20,
-            marginBottom: 10
-        }}>{"Hoạt động của bạn"}</Text>
-        <AchivementIndex result={arIndex} dateString={dateString}
-                         username={useContext(AuthContext).state.username}/>
+        <NavigationEvents onWillFocus={getLastActivities}/>
+        <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
+        <View style={styles.mainContainer}>
+            <LastActivities activities={state}/>
+        </View>
         <TouchableOpacity onPress={() => {
             return navigation.navigate('Activities');
         }}>
-            <View style={styles.containerTextButton}>
-                <Text style={styles.textButton}>Xem chi tiết</Text>
+            <View style={styles.containerButton}>
+                <View style={styles.containerTextButton}>
+                    <Text style={styles.textButton}>Xem chi tiết</Text>
+                </View>
             </View>
         </TouchableOpacity>
     </View>
@@ -69,24 +67,48 @@ const styles = StyleSheet.create({
         fontWeight : 'bold',
         paddingLeft: 5,
     },
+    textTitle          : {
+        color       : "#145BB6",
+        fontSize    : 14,
+        fontWeight  : "bold",
+        marginBottom: 10,
+    },
     textHeaderSmall    : {
         fontSize   : 14,
         color      : '#FFFFFF',
         paddingLeft: 5,
     },
     containerTextButton: {
-        borderColor: 'black',
+        borderColor: 'blue',
         borderWidth: 1,
-        width      : 100,
-        height     : 30,
-        alignItems : 'center',
+        width      : 200,
+        // height     : 40,
+        justifyContent: "center",
+        alignItems    : "center",
+        padding       : 5,
+        paddingLeft   : 10,
+        paddingRight  : 10,
+    },
+    containerButton: {
+        justifyContent: "center",
+        alignItems    : "center",
+        padding       : 20,
     },
     textButton         : {
         fontSize: 14,
         color   : 'black',
+        // width: 200,
+        // padding: 5,
+        // paddingLeft: 10,
+        // paddingRight: 10,
+        // borderWidth: 1,
+        // justifyContent: "center",
+        // alignItems    : "center",
     },
     container          : {
-        alignContent: 'center',
+        alignContent  : 'center',
+        justifyContent: "center",
+        alignItems    : "center",
     },
 
 

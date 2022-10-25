@@ -7,7 +7,7 @@ const LastActivities = ({title, activities, navigation}) => {
     // console.log(activities);
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{title}</Text>
+            {/*<Text style={styles.title}>{title}</Text>*/}
             <FlatList
                 vertical
                 data={activities}
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '95%',
-        marginBottom: 10,
+        // marginBottom: 10,
     }
 });
 

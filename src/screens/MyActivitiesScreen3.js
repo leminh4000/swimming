@@ -18,6 +18,10 @@ import Quest02SkillLevelScreen from "./Quest02SkillLevelScreen";
 import {HeaderTitle} from "react-navigation-stack";
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
+import AchivementIndex from "../components/AchivementIndex";
+import {
+    Context as ActivitySummaryContext
+} from "../context/ActivitySummaryContext";
 
 
 const MyActivitiesScreen3 = ({navigation}) => {
@@ -25,15 +29,22 @@ const MyActivitiesScreen3 = ({navigation}) => {
     const {
         state,
         fetchMonthActivities,
-        addActivities,
     } = useContext(ActivityContext);
-
+    const {
+        fetchMonthActivitiesSummary,
+    } = useContext(ActivitySummaryContext);
+    const fetch=()=>{
+        fetchMonthActivities();
+        fetchMonthActivitiesSummary();
+    }
     return <>
-        <NavigationEvents onWillFocus={fetchMonthActivities}/>
+        <NavigationEvents onWillFocus={fetch}/>
+        <AchivementIndex result={useContext(ActivitySummaryContext).state} dateString={"Tháng này (Garmin activities)"}
+                         username={useContext(AuthContext).state.username}/>
 
         <View style={styles.container}>
             <View style={styles.mainContainer}>
-                <LastActivities activities={state.activities} title="Last Activities"/>
+                <LastActivities activities={state} title="Last Activities"/>
             </View>
         </View>
     < />

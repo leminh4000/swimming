@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Text, FlatList, TouchableOpacity} from 'react-native';
+import {
+    View, StyleSheet, Text, FlatList, TouchableOpacity, SafeAreaView
+} from 'react-native';
 import {withNavigation} from "react-navigation";
 import {Avatar} from "@rneui/themed";
 
@@ -10,41 +12,53 @@ const ArchivementTable = ({
                               onImportPress,
                           }) => {
 
-    return (
-        <View style={styles.container}>
-            {/*for testing purposes*/}
-            {/*<NavigationEvents onWillFocus={() => {
+    return (<View style={styles.container}>
+        {/*for testing purposes*/}
+        {/*<NavigationEvents onWillFocus={() => {
                 console.log("title", title);
                 console.log(results);
             }}/>*/}
-            <View style={styles.containerTable}>
-                <View style={styles.containerTitle}>
-                    <Text style={styles.title}>{title}</Text>
-                </View>
-                <FlatList
-                    vertical
-                    data={results}
-                    keyExtractor={(result) => result._id}
-                    renderItem={({item}) => {
-                        return (<View style={styles.containerRow}>
-                            <Text style={styles.textType}>{item.type}</Text>
-                            <Text style={styles.textValue}>{item.value}</Text>
-                        </View>);
-                    }}/>
-                <View style={styles.containerAvatarImport}>
-                    <TouchableOpacity onPress={onImportPress}>
-                        <Avatar
-                            source={require("../../assets/import.png")}
-                            size={100}
-                            rounded
-                            activeOpacity={0.1}
-                            containerStyle={styles.avatarImport}
-
-                        />
-                    </TouchableOpacity>
-                </View>
+        <View style={styles.containerTable}>
+            <View style={styles.containerTitle}>
+                <Text style={styles.title}>{title}</Text>
             </View>
-        </View>);
+            <View style={{flex: 1}}>
+                {
+                    results && results.map((item) =>
+                        <View style={styles.containerRow} key={item._id}>
+                            <Text style={styles.textType}>{item.type}</Text>
+                            <Text
+                                style={styles.textValue}>{item.value}</Text>
+                        </View>
+                    )
+                }
+                {/*<FlatList
+                        vertical
+                        data={results}
+                        scrollEnabled={false}
+                        keyExtractor={(result) => result._id}
+                        renderItem={({item}) => {
+                            return (<View style={styles.containerRow}>
+                                <Text style={styles.textType}>{item.type}</Text>
+                                <Text
+                                    style={styles.textValue}>{item.value}</Text>
+                            </View>);
+                        }}/>*/}
+            </View>
+            <View style={styles.containerAvatarImport}>
+                <TouchableOpacity onPress={onImportPress}>
+                    <Avatar
+                        source={require("../../assets/import.png")}
+                        size={100}
+                        rounded
+                        activeOpacity={0.1}
+                        containerStyle={styles.avatarImport}
+
+                    />
+                </TouchableOpacity>
+            </View>
+        </View>
+    </View>);
 };
 
 const styles = StyleSheet.create({
@@ -53,11 +67,10 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     title                : {
-        fontSize    : 18,
-        fontWeight  : 'bold',
-        marginLeft  : 10,
-        // marginBottom: 5,
-        color       : 'white', // foregroundColor: 'gray',
+        fontSize  : 18,
+        fontWeight: 'bold',
+        marginLeft: 10, // marginBottom: 5,
+        color     : 'white', // foregroundColor: 'gray',
 
     },
     textType             : {
@@ -72,7 +85,7 @@ const styles = StyleSheet.create({
     },
     containerTable       : {
         // marginBottom: 10,
-        width       : '95%',
+        width: '95%',
     },
     container            : {
         justifyContent: 'center',

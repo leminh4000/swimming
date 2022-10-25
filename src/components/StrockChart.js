@@ -33,12 +33,12 @@ const StrockChart = ({activity})=>{
                 yAxisSuffix=""
                 yAxisInterval={20} // optional, defaults to 1
                 chartConfig={{
-                    backgroundColor       : "blue",
-                    backgroundGradientFrom: "green",
-                    backgroundGradientTo  : "black",
+                    backgroundColor       : "white",
+                    backgroundGradientFrom: "white",
+                    backgroundGradientTo  : "white",
                     decimalPlaces         : 0, // optional, defaults to 2dp
-                    color                 : (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    labelColor            : (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    color                 : (opacity = 1) => `#6683FE`,
+                    labelColor            : (opacity = 1) => `#77838F`,
                     style                 : {
                         borderRadius: 11
                     },
@@ -62,6 +62,10 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
+    },
+    header: {
+        color         : '#1E2022',
+        fontSize : '14px',
     },
     button: {
         flex: 1,

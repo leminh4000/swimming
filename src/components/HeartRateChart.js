@@ -19,7 +19,7 @@ const HeartRateChart = ({activity})=>{
     console.log(data.length);
     return (
         <View>
-            <Text>Nhịp tim</Text>
+            <Text style={styles.text}>Nhịp tim</Text>
             <LineChart
                 data={{
                     datasets: [
@@ -34,12 +34,12 @@ const HeartRateChart = ({activity})=>{
                 yAxisSuffix=""
                 yAxisInterval={20} // optional, defaults to 1
                 chartConfig={{
-                    backgroundColor       : "brown",
-                    backgroundGradientFrom: "brown",
-                    backgroundGradientTo  : "black",
+                    backgroundColor       : "white",
+                    backgroundGradientFrom: "white",
+                    backgroundGradientTo  : "white",
                     decimalPlaces         : 0, // optional, defaults to 2dp
-                    color                 : (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    labelColor            : (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    color                 : (opacity = 1) => `rgba(30, 32, 34, ${opacity})`,
+                    labelColor            : (opacity = 1) => `#77838F`,
                     style                 : {
                         borderRadius: 11
                     },
@@ -63,6 +63,15 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
+    },
+    header: {
+        color         : '#1E2022',
+        fontSize : '14px',
+    },
+    text: {
+        color: '#1E2022',
+        fontSize:14,
+
     },
     button: {
         flex: 1,

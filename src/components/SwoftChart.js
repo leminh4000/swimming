@@ -17,7 +17,7 @@ const SwoftChart = ({activity}) => {
     // console.log("data",data);
     return (
         <View>
-            <Text style={styles.header}>Số sải tay - SWOLF (/100m)</Text>
+            <Text style={styles.header}>{`Số sải tay - SWOLF (/${activity.sessions[0].pool_length}m)`}</Text>
             <BarChart
                 data={{
                     datasets: [
@@ -35,11 +35,12 @@ const SwoftChart = ({activity}) => {
                 height={220}
                 yAxisLabel={''}
                 chartConfig={{
-                    backgroundColor       : '#1cc910',
+                    backgroundColor       : 'white',
                     backgroundGradientFrom: 'white',
                     backgroundGradientTo  : 'white',
                     decimalPlaces         : 0,
-                    color                 : (opacity = 1) => `blue`,
+                    color                 : (opacity = 1) => `#5D7AF2`,
+                    labelColor            : (opacity = 1) => `#77838F`,
                     style                 : {
                         borderRadius: 1,
                     },
@@ -58,6 +59,10 @@ const styles = StyleSheet.create({
     container: {
         flex         : 1,
         flexDirection: 'row',
+    },
+    header: {
+        color         : '#1E2022',
+        fontSize : '14px',
     },
     button   : {
         flex           : 1,

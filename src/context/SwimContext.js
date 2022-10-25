@@ -41,7 +41,6 @@ const swimReducer = (state, action) => {
     }
 };
 const setGender = dispatch => (gender) => {
-    console.log('setGender', gender);
     dispatch({
         type   : 'setGender',
         payload: gender,
@@ -49,14 +48,12 @@ const setGender = dispatch => (gender) => {
 }
 
 const setHeight = dispatch => (height) => {
-    console.log('setHeight', height);
     dispatch({
         type   : 'setHeight',
         payload: height,
     });
 }
 const setWeight = dispatch => (weight) => {
-    console.log("setWeight",weight);
     dispatch({
         type   : 'setWeight',
         payload: weight,
@@ -67,7 +64,6 @@ const setWeight = dispatch => (weight) => {
 const tryLocalGetLevel = dispatch => async () => {
     // await AsyncStorage.removeItem('level');
     const level = await AsyncStorage.getItem('level');
-    console.log("level", level);
     if (level) {
         dispatch({
             type   : 'setLevel',
@@ -77,8 +73,6 @@ const tryLocalGetLevel = dispatch => async () => {
     } else {
         try {
             const response = await swimApi.get('/userLevels');
-            console.log("response.data", response.data);
-            console.log("response.data.length", response.data.length);
             if (response.data.length > 0) {
                 await AsyncStorage.setItem('level', `${response.data.level}`);
                 dispatch({
@@ -106,13 +100,10 @@ const clearErrorMessage = dispatch => () => {
 }
 
 const setLevel = (dispatch) => async (level) => {
-    console.log("level", level);
     try {
         const response = await swimApi.post('/userLevels', {
             level: level,
         });
-        console.log("response.data", response.data);
-        console.log("response.data.level", response.data.level);
         await AsyncStorage.setItem('level', `${response.data.level}`);
 
         dispatch({

@@ -16,6 +16,7 @@ import {
     Provider as ArchivementProvider
 } from './src/context/ArchivementContext';
 import {Provider as ActivityProvider} from './src/context/ActivityContext';
+import {Provider as ActivitySummaryProvider} from './src/context/ActivitySummaryContext';
 import {setNavigator} from "./src/navigationRef";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import Quest01SkillLevelScreen from "./src/screens/Quest01SkillLevelScreen";
@@ -32,6 +33,7 @@ import {LogBox} from "react-native";
 import HomeScreen from "./src/screens/HomeScreen";
 import MyActivitiesScreen2 from "./src/screens/MyActivitiesScreen2";
 import MyActivitiesScreen3 from "./src/screens/MyActivitiesScreen3";
+import ActivitySummary from "./src/components/ActivitySummary";
 
 
 const switchNavigator = createSwitchNavigator({
@@ -222,16 +224,20 @@ const switchNavigator = createSwitchNavigator({
 const App = createAppContainer(switchNavigator);
 export default () => {
     LogBox.ignoreLogs(["EventEmitter.removeListener"]);
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     return (
-        <ActivityProvider>
-            <ArchivementProvider>
-                <SwimProvider>
-                    <AuthProvider>
-                        <App ref={(navigator) => {
-                            setNavigator(navigator)
-                        }}/>
-                    </AuthProvider>
-                </SwimProvider>
-            </ArchivementProvider>
-        </ActivityProvider>)
+        <ActivitySummaryProvider>
+            <ActivityProvider>
+                <ArchivementProvider>
+                    <SwimProvider>
+                        <AuthProvider>
+                            <App ref={(navigator) => {
+                                setNavigator(navigator)
+                            }}/>
+                        </AuthProvider>
+                    </SwimProvider>
+                </ArchivementProvider>
+            </ActivityProvider>
+        </ActivitySummaryProvider>
+    )
 }

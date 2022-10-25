@@ -7,9 +7,6 @@ import {
 import {Icon} from "react-native-elements";
 
 const AchivementBadge = ({result, blurRadiuses}) => {
-    console.log("result",result);
-    console.log("blurRadiuses",blurRadiuses);
-
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{"All badges"}</Text>
