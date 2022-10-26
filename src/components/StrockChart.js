@@ -1,13 +1,8 @@
 import React from 'react'
 
-import {
-    View,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Dimensions
-} from 'react-native';
-import {BarChart, LineChart} from "react-native-chart-kit";
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {LineChart} from "react-native-chart-kit";
+import {seconds2mmss} from "../helper/Date";
 
 const StrockChart = ({activity})=>{
     function getStrockAndTime() {
@@ -25,7 +20,7 @@ const StrockChart = ({activity})=>{
             const seconds = timer_times[i - 1] + Math.floor(total_timer_times[i]);
             timer_times.push(seconds);
         }
-        const timer_times_str = timer_times.map(timer_time => new Date(timer_time * 1000).toISOString().substring(14, 19));
+        const timer_times_str = timer_times.map(timer_time => seconds2mmss(timer_time));
         const strokesForMinutes = [];
         for (let i = 0; i < total_timer_times.length; i++) {
             const strokesForMinute = Math.floor(strokesForLaps[i] * 60 / total_timer_times[i]);

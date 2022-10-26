@@ -8,6 +8,7 @@ import {FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import {Context as AuthContext} from "../context/AuthContext";
 import Spacer from "./Spacer";
 import {Avatar} from "@rneui/themed";
+import {seconds2mmss} from "../helper/Date";
 
 const ActivitySummary = ({activity}) => {
     const getDisplayDate = (date) => {
@@ -95,7 +96,7 @@ const ActivitySummary = ({activity}) => {
                             style={styles.textSmall}>Thời gian
                         </Text>
                         <Text
-                            style={styles.textSmall}>{session?.total_timer_time}
+                            style={styles.textSmall}>{seconds2mmss(Math.floor(session?.total_timer_time))}
                         </Text>
                     </View>
                 </View>

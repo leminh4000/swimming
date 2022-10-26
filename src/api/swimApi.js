@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const instance = axios.create({
     // baseURL: "http://localhost:3000",
     // baseURL: "http://192.168.43.99:3000",
-    baseURL: "https://sweet-rings-admire-42-113-3-49.loca.lt",
+    baseURL: "https://fresh-vans-try-113-185-43-109.loca.lt",
 
 
 });

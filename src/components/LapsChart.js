@@ -13,7 +13,7 @@ const LapsChart = ({activity}) => {
     const data = activity.sessions[0].laps.map(lap => lap.total_timer_time);
     return (
         <View>
-            <Text style={styles.header}>Thời gian bơi mỗi vòng</Text>
+            <Text style={styles.header}>Thời gian bơi mỗi vòng (tính theo giây)</Text>
             <BarChart
                 data={{
                     datasets: [
@@ -29,7 +29,8 @@ const LapsChart = ({activity}) => {
                 minValue={0}
                 width={Dimensions.get('window').width - 16}
                 height={220}
-                yAxisLabel={''}
+                yAxisLabel=""
+                yAxisSuffix=""
                 chartConfig={{
                     backgroundColor       : 'white',
                     backgroundGradientFrom: 'white',
