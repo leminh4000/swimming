@@ -115,6 +115,9 @@ const MyActivitiesScreen = ({navigation}) => {
                             }
                         ]
                     );
+                    fetch();
+                    getBlurRadiuses();
+
                     console.log(`Bạn dành được huy chương level ${state.newLevel}`);
                 }
             }

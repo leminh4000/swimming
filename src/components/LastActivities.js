@@ -12,6 +12,7 @@ const LastActivities = ({title, activities, navigation}) => {
                 vertical
                 data={activities}
                 keyExtractor={(activity) => activity._id}
+                scrollEnabled={false}
                 renderItem={({item}) => {
                     return (
                         <TouchableOpacity onPress={()=>{

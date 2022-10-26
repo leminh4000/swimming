@@ -1,8 +1,10 @@
 import React, {useCallback, useContext, useState} from 'react'
 
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Text, Button, ScrollView} from 'react-native';
 import {Context as ActivityContext} from "../context/ActivityContext";
-import {Context as ActivitySummaryContext} from "../context/ActivitySummaryContext";
+import {
+    Context as ActivitySummaryContext
+} from "../context/ActivitySummaryContext";
 import LastActivities from "../components/LastActivities";
 import {NavigationEvents} from "react-navigation";
 import {Avatar} from "@rneui/themed";
@@ -35,7 +37,7 @@ const MyActivitiesScreen2 = ({navigation}) => {
     //     "total_distance"    : "0.0016 km",
     //     "total_timer_time"  : "00:34 phút"
     // };
-    const fetch=()=>{
+    const fetch = () => {
         fetchWeekActivities();
         fetchWeekActivitiesSummary();
     }
@@ -44,12 +46,16 @@ const MyActivitiesScreen2 = ({navigation}) => {
         <NavigationEvents onWillFocus={fetch}/>
 
         <View style={styles.container}>
-            <AchivementIndex result={useContext(ActivitySummaryContext).state} dateString={"Tuần này (Garmin activities)"}
-                             username={useContext(AuthContext).state.username}/>
+            <ScrollView>
+                <AchivementIndex
+                    result={useContext(ActivitySummaryContext).state}
+                    dateString={"Tuần này (Garmin activities)"}
+                    username={useContext(AuthContext).state.username}/>
 
-            <View style={styles.mainContainer}>
-                <LastActivities activities={state} title="Last Activities"/>
-            </View>
+                <View style={styles.mainContainer}>
+                    <LastActivities activities={state} title="Last Activities"/>
+                </View>
+            </ScrollView>
         </View>
     < />
 };
@@ -69,8 +75,10 @@ MyActivitiesScreen2.navigationOptions = (navData) => {
 
                     />
                     <View>
-                        <Text style={styles.textHeader}>Chào {useContext(AuthContext).state.username}</Text>
-                        <Text style={styles.textHeaderSmall}>Hôm nay {new Date().toLocaleDateString('en-GB')}</Text>
+                        <Text
+                            style={styles.textHeader}>Chào {useContext(AuthContext).state.username}</Text>
+                        <Text style={styles.textHeaderSmall}>Hôm
+                            nay {new Date().toLocaleDateString('en-GB')}</Text>
                     </View>
                 </View>
             );
@@ -80,24 +88,24 @@ MyActivitiesScreen2.navigationOptions = (navData) => {
 
 
 const styles = StyleSheet.create({
-    textHeader   : {
-        fontSize  : 18,
-        color     : '#FFFFFF',
-        fontWeight: 'bold',
-        paddingLeft:5,
+    textHeader     : {
+        fontSize   : 18,
+        color      : '#FFFFFF',
+        fontWeight : 'bold',
+        paddingLeft: 5,
     },
-    textHeaderSmall   : {
-        fontSize  : 14,
-        color     : '#FFFFFF',
-        paddingLeft:5,
+    textHeaderSmall: {
+        fontSize   : 14,
+        color      : '#FFFFFF',
+        paddingLeft: 5,
     },
-    container    : {
-        padding: 10,
-        flex           : 8,
-        flexDirection  : 'column',
+    container      : {
+        padding      : 10,
+        flex         : 8,
+        flexDirection: 'column',
         // alignItems     : 'center',
     },
-    mainContainer: {
+    mainContainer  : {
         alignItems: 'center',
     },
 
@@ -181,10 +189,10 @@ const styles = StyleSheet.create({
 
     },
     buttonGroupContainer: {
-        color          : "yellow",
-        textAlign      : "center", // paddingVertical : 5,
-        marginBottom   : 10,
-        width          : 300,
+        color       : "yellow",
+        textAlign   : "center", // paddingVertical : 5,
+        marginBottom: 10,
+        width       : 300,
     },
     video               : {
         width : 100,
