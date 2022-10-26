@@ -6,7 +6,7 @@ import {navigate} from '../navigationRef'
 const archivementReducer = (state, action) => {
     switch (action.type) {
         case 'fetch_archivements':
-            return {...state, archivements:action.payload};
+            return action.payload ? {...state, archivements:action.payload}:state;
          case 'fetch_level':
             return {...state,level:action.payload};
         default :
@@ -41,7 +41,7 @@ const fetchLevel = (dispatch) => async () => {
 
     dispatch({
         type: 'fetch_level',
-        payload: response.data[0].value,
+        payload: response.data.length>0?response.data[0].value:null,
     });
 }
 

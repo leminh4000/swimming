@@ -14,26 +14,34 @@ const HomeScreen = ({navigation}) => {
         state,
         getLastActivities,
     } = useContext(ActivityContext);
+    const {signout} = useContext(AuthContext);
 
     return <>
         <NavigationEvents onWillFocus={getLastActivities}/>
         <View style={styles.container}>
             <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
 
-        <View style={styles.containerActivity}>
-            <View style={styles.mainContainer}>
-                <LastActivities activities={state}/>
-            </View>
-            <TouchableOpacity onPress={() => {
-                return navigation.navigate('Activities');
-            }}>
-                <View style={styles.containerButton}>
-                    <View style={styles.containerTextButton}>
-                        <Text style={styles.textButton}>Xem chi tiết</Text>
-                    </View>
+            <View style={styles.containerActivity}>
+                <View style={styles.mainContainer}>
+                    <LastActivities activities={state}/>
                 </View>
-            </TouchableOpacity>
-        </View>
+                <TouchableOpacity onPress={() => {
+                    return navigation.navigate('Activities');
+                }}>
+                    <View style={styles.containerButton}>
+                        <View style={styles.containerTextButton}>
+                            <Text style={styles.textButton}>Xem chi tiết</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={signout}>
+                    <View style={styles.containerButton}>
+                        <View style={styles.containerTextButton}>
+                            <Text style={styles.textButton}>Signout</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     </>
 };
@@ -111,9 +119,8 @@ const styles = StyleSheet.create({
         // justifyContent: "center",
         // alignItems    : "center",
     },
-    containerActivity  : {
-    },
-container  : {
+    containerActivity  : {},
+    container          : {
         padding: 10,
     },
 
