@@ -16,7 +16,6 @@ const HeartRateChart = ({activity})=>{
             data.push(record.heart_rate);
         }
     }
-    console.log(data.length);
     return (
         <View>
             <Text style={styles.text}>Nhịp tim</Text>
@@ -24,7 +23,7 @@ const HeartRateChart = ({activity})=>{
                 data={{
                     datasets: [
                         {
-                            data: data
+                            data: data,
                         }
                     ]
                 }}
