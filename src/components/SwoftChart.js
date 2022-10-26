@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     header: {
         color         : '#1E2022',
-        fontSize : '14px',
+        fontSize : 14,
     },
     button   : {
         flex           : 1,
