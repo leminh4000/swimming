@@ -33,6 +33,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import MyActivitiesScreen2 from './src/screens/MyActivitiesScreen2';
 import MyActivitiesScreen3 from './src/screens/MyActivitiesScreen3';
 import ActivitySummary from './src/components/ActivitySummary';
+import DetailLearn from './src/screens/DetailLearn';
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -182,40 +183,56 @@ const switchNavigator = createSwitchNavigator({
             }
         },*/
       Profile: {
-        screen: createStackNavigator({
-          screen: createMaterialTopTabNavigator(
-            {
-              Performance: {
-                screen: PerformanceScreen,
-                navigationOptions: {
-                  tabBarLabel: 'Performance',
+        screen: createStackNavigator(
+          {
+            screen: createMaterialTopTabNavigator(
+              {
+                Performance: {
+                  screen: PerformanceScreen,
+                  navigationOptions: {
+                    tabBarLabel: 'Beginner',
+                  },
+                },
+                Profile: {
+                  screen: ProfileScreen,
+                  navigationOptions: {
+                    tabBarLabel: 'Intermediate',
+                  },
+                },
+                History: {
+                  screen: HistoryScreen,
+                  navigationOptions: {
+                    tabBarLabel: 'Advance',
+                  },
                 },
               },
-              Profile: {
-                screen: ProfileScreen,
-                navigationOptions: {
-                  tabBarLabel: 'Profile',
-                },
-              },
-              History: {
-                screen: HistoryScreen,
-                navigationOptions: {
-                  tabBarLabel: 'History',
-                },
-              },
-            },
-            {
-              tabBarOptions: {
-                showIcon: true,
+              {
+                tabBarOptions: {
+                  showIcon: true,
 
-                style: {
-                  // backgroundColor: "#006600",
-                  // marginTop      : 28,
+                  style: {
+                    // backgroundColor: "#006600",
+                    // marginTop      : 28,
+                  },
                 },
+              }
+            ),
+            DetailLearn: DetailLearn,
+          },
+          {
+            defaultNavigationOptions: {
+              headerTitle: 'Bài học',
+              headerStyle: {
+                backgroundColor: '#83B9FF',
               },
-            }
-          ),
-        }),
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                color: '#FFF',
+              },
+              headerTintColor: '#FFF',
+            },
+          }
+        ),
 
         navigationOptions: {
           tabBarLabel: 'Profile',
