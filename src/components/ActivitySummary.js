@@ -10,10 +10,26 @@ import Spacer from "./Spacer";
 import {Avatar} from "@rneui/themed";
 
 const ActivitySummary = ({activity}) => {
+    const getDisplayDate = (year, month, day) => {
+        let today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        today.setMilliseconds(0);
+        let compDate = new Date(year,month-1,day);
+        let diff = today.getTime() - compDate.getTime();
+        if (compDate.getTime() === today.getTime()) {
+            return "Hôm nay";
+        } else if (diff <= (24 * 60 * 60 *1000)) {
+            return "Hôm qua";
+        } else {
+            return  compDate.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + compDate.toLocaleDateString('en-GB');
+        }
+    }
     const session = activity.sessions[0];
     const isoDate = session?.timestamp;
     const date = new Date(isoDate);
-    const dateString = date.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + date.toLocaleDateString('en-GB');
+    const dateString =getDisplayDate(date.getFullYear(), date.getMonth()+1, date.getDate());
     return (
         <View style={styles.container}>
             <View style={styles.containerHeader}>
