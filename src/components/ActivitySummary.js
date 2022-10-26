@@ -10,13 +10,19 @@ import Spacer from "./Spacer";
 import {Avatar} from "@rneui/themed";
 
 const ActivitySummary = ({activity}) => {
-    const getDisplayDate = (year, month, day) => {
+    const getDisplayDate = (date) => {
         let today = new Date();
         today.setHours(0);
         today.setMinutes(0);
         today.setSeconds(0);
         today.setMilliseconds(0);
-        let compDate = new Date(year,month-1,day);
+        let compDate = date;
+        compDate.setHours(0);
+        compDate.setMinutes(0);
+        compDate.setSeconds(0);
+        compDate.setMilliseconds(0);
+        console.log("compDate", compDate);
+        console.log("today", today);
         let diff = today.getTime() - compDate.getTime();
         if (compDate.getTime() === today.getTime()) {
             return "Hôm nay";
@@ -29,7 +35,7 @@ const ActivitySummary = ({activity}) => {
     const session = activity.sessions[0];
     const isoDate = session?.timestamp;
     const date = new Date(isoDate);
-    const dateString =getDisplayDate(date.getFullYear(), date.getMonth()+1, date.getDate());
+    const dateString =getDisplayDate(date);
     return (
         <View style={styles.container}>
             <View style={styles.containerHeader}>
