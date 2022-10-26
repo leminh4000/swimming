@@ -148,7 +148,7 @@ const MyActivitiesScreen = ({navigation}) => {
                 {/*<AchivementIndex result={arIndex} dateString={dateString}
                                  username={useContext(AuthContext).state.username}/>*/}
                 <AchivementBadge blurRadiuses={getBlurRadiuses()}/>
-                {/*<View style={styles.container}>*/}
+                {/*<View style={styles.containerActivity}>*/}
                 <ArchivementTable title="Thành tích cá nhân"
                                   results={archivementContext.state.archivements}
                                   onImportPress={handleDocumentSelection}/>
@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
         // alignItems     : 'center',
     },
     mainContainer  : {
+        padding: 10,
         alignItems: 'center',
     },
 

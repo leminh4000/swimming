@@ -30,13 +30,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginLeft: 10,
+        // marginLeft: 10,
         marginBottom: 5,
         color: 'white',
 
     },
     container: {
-        width: '95%',
+        width: '100%',
         // marginBottom: 10,
     }
 });

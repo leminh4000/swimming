@@ -5,10 +5,6 @@ import {Context as ActivityContext} from "../context/ActivityContext";
 import {Context as ActivitySummaryContext} from "../context/ActivitySummaryContext";
 import LastActivities from "../components/LastActivities";
 import {NavigationEvents} from "react-navigation";
-import {Menu, MenuItem, MenuDivider} from 'react-native-material-menu';
-import * as DocumentPicker from "expo-document-picker";
-import * as FileSystem from 'expo-file-system';
-import {Buffer} from "buffer";
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
 import AchivementIndex from "../components/AchivementIndex";
@@ -96,6 +92,7 @@ const styles = StyleSheet.create({
         paddingLeft:5,
     },
     container    : {
+        padding: 10,
         flex           : 8,
         flexDirection  : 'column',
         // alignItems     : 'center',

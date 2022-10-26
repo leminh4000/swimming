@@ -141,6 +141,39 @@ const styles = StyleSheet.create({
         color          : 'blue',
         foregroundColor: 'blue',
     },
+    textHuge              : {
+        fontSize: 18,
+        color   : 'white',
+    },
+    textHugeBold          : {
+        fontSize  : 18,
+        color     : '#145BB6',
+        fontWeight: '700',
+
+    },
+    textBig               : {
+        fontSize: 16,
+        color   : '#145BB6',
+    },
+    textBigBold           : {
+        fontSize  : 16,
+        color     : '#145BB6',
+        fontWeight: 'bold',
+
+    },
+    textNormal            : {
+        fontSize: 14,
+        color   : '#145BB6',
+    },
+    textNormalBold        : {
+        fontSize  : 14,
+        color     : '#145BB6',
+        fontWeight: 'bold',
+    },
+    textSmall             : {
+        fontSize: 12,
+        color   : '#145BB6',
+    }
 });
 
 export default AchivementIndex;

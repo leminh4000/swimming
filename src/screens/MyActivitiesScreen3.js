@@ -39,13 +39,15 @@ const MyActivitiesScreen3 = ({navigation}) => {
     }
     return <>
         <NavigationEvents onWillFocus={fetch}/>
+        <View  style={styles.container}>
         <AchivementIndex result={useContext(ActivitySummaryContext).state} dateString={"Tháng này (Garmin activities)"}
                          username={useContext(AuthContext).state.username}/>
 
-        <View style={styles.container}>
+        <View>
             <View style={styles.mainContainer}>
                 <LastActivities activities={state} title="Last Activities"/>
             </View>
+        </View>
         </View>
     < />
 };
@@ -89,8 +91,9 @@ const styles = StyleSheet.create({
         paddingLeft:5,
     },
     container    : {
-        flex           : 8,
-        flexDirection  : 'column',
+        padding: 10,
+        // flex           : 8,
+        // flexDirection  : 'column',
         // alignItems     : 'center',
     },
     mainContainer: {

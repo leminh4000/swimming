@@ -15,22 +15,27 @@ const HomeScreen = ({navigation}) => {
         getLastActivities,
     } = useContext(ActivityContext);
 
-    return <View style={styles.container}>
+    return <>
         <NavigationEvents onWillFocus={getLastActivities}/>
-        <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
-        <View style={styles.mainContainer}>
-            <LastActivities activities={state}/>
-        </View>
-        <TouchableOpacity onPress={() => {
-            return navigation.navigate('Activities');
-        }}>
-            <View style={styles.containerButton}>
-                <View style={styles.containerTextButton}>
-                    <Text style={styles.textButton}>Xem chi tiết</Text>
-                </View>
+        <View style={styles.container}>
+            <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
+
+        <View style={styles.containerActivity}>
+            <View style={styles.mainContainer}>
+                <LastActivities activities={state}/>
             </View>
-        </TouchableOpacity>
-    </View>
+            <TouchableOpacity onPress={() => {
+                return navigation.navigate('Activities');
+            }}>
+                <View style={styles.containerButton}>
+                    <View style={styles.containerTextButton}>
+                        <Text style={styles.textButton}>Xem chi tiết</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        </View>
+        </View>
+    </>
 };
 
 HomeScreen.navigationOptions = () => {
@@ -68,10 +73,11 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
     },
     textTitle          : {
-        color       : "#145BB6",
-        fontSize    : 14,
-        fontWeight  : "bold",
-        marginBottom: 10,
+        color         : "#145BB6",
+        fontSize      : 14,
+        fontWeight    : "bold",
+        marginBottom  : 10,
+        justifyContent: "flex-start",
     },
     textHeaderSmall    : {
         fontSize   : 14,
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
         paddingLeft   : 10,
         paddingRight  : 10,
     },
-    containerButton: {
+    containerButton    : {
         justifyContent: "center",
         alignItems    : "center",
         padding       : 20,
@@ -105,10 +111,10 @@ const styles = StyleSheet.create({
         // justifyContent: "center",
         // alignItems    : "center",
     },
-    container          : {
-        alignContent  : 'center',
-        justifyContent: "center",
-        alignItems    : "center",
+    containerActivity  : {
+    },
+container  : {
+        padding: 10,
     },
 
 
