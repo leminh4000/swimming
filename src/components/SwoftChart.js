@@ -4,9 +4,10 @@ import {
     View,
     StyleSheet,
     Text,
-    Dimensions
+    Dimensions, TouchableOpacity, Alert
 } from 'react-native';
 import {BarChart} from "react-native-chart-kit";
+import {FontAwesome} from "@expo/vector-icons";
 
 const SwoftChart = ({activity}) => {
     const lengths=[];
@@ -17,7 +18,29 @@ const SwoftChart = ({activity}) => {
     // console.log("data",data);
     return (
         <View>
-            <Text style={styles.header}>{`Số sải tay - SWOLF (/${activity.sessions[0].pool_length}m)`}</Text>
+            <View style={styles.containerTitle}>
+                <View style={styles.containerTitleStart}>
+                    <Text style={styles.text}>{`Số sải tay - SWOLF (/${activity.sessions[0].pool_length}m)`}</Text>
+                </View>
+                <View style={styles.containerTitleEnd}>
+                    <TouchableOpacity onPress={() => Alert.alert(
+                        "SWOLF là gì?",
+                        `SWOLF = T (thời gian bơi, tính bằng giây) + M (số chu kỳ tay quạt)
+
+Ví dụ, bạn bơi 50m hết 40 giây (T = 40) và cần 30 chu kỳ tay để bơi hết chiều dài đó (M = 30). 
+Vậy điểm số SWOLF = 40 + 30 = 70`,
+                        [
+                            {
+                                text   : "OK",
+                                onPress: () => console.log("OK Pressed")
+                            }
+                        ]
+                    )}>
+                        <FontAwesome name="question-circle-o" size={24}
+                                     color="#4E4B66"/>
+                    </TouchableOpacity>
+                </View>
+            </View>
             <BarChart
                 data={{
                     datasets: [
@@ -59,6 +82,19 @@ const styles = StyleSheet.create({
     container: {
         flex         : 1,
         flexDirection: 'row',
+    },
+    containerTitle     : {
+        flexDirection: 'row',
+    },
+    containerTitleStart: {
+        flex          : 1,
+        flexDirection : 'row',
+        justifyContent: 'flex-start',
+    },
+    containerTitleEnd  : {
+        flex          : 1,
+        flexDirection : 'row',
+        justifyContent: 'flex-end',
     },
     header: {
         color         : '#1E2022',
