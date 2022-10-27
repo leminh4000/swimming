@@ -1,8 +1,16 @@
 import React from 'react'
 
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {
+    Alert,
+    Dimensions,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import {LineChart} from "react-native-chart-kit";
 import {seconds2mmss} from "../helper/Date";
+import {FontAwesome} from "@expo/vector-icons";
 
 const StrockChart = ({activity})=>{
     function getStrockAndTime() {
@@ -38,7 +46,26 @@ const StrockChart = ({activity})=>{
     } = getStrockAndTime();
     return (
         <View>
-            <Text style={styles.header}>Số sải tay/ mỗi phút - Average Stroke Rater</Text>
+            <View style={styles.containerTitle}>
+                <View style={styles.containerTitleStart}>
+                    <Text style={styles.text}>Số sải tay/ mỗi phút - Average Stroke Rater</Text>
+                </View>
+                <View style={styles.containerTitleEnd}>
+                    <TouchableOpacity onPress={() => Alert.alert(
+                        "Average Stroke Rate",
+                        `Total Stroke là tổng số sải tay bạn đã thực hiện trong cả buổi tập. Average Stroke Rate là số sải tay bạn thực hiện được trong mỗi phút. Maximum Stroke Rate cũng là số sải tay bạn thực hiện được trong mỗi phút nhưng đây là con số kỷ lục cao nhất của bạn. Cuối cùng Average Strokes là số sải tay tính trên từng khoảng cách riêng biệt.`,
+                        [
+                            {
+                                text   : "OK",
+                                onPress: () => console.log("OK Pressed")
+                            }
+                        ]
+                    )}>
+                        <FontAwesome name="question-circle-o" size={24}
+                                     color="#4E4B66"/>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
             <LineChart
                 data={{
@@ -84,6 +111,19 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
+    },
+    containerTitle     : {
+        flexDirection: 'row',
+    },
+    containerTitleStart: {
+        flex          : 1,
+        flexDirection : 'row',
+        justifyContent: 'flex-start',
+    },
+    containerTitleEnd  : {
+        flex          : 1,
+        flexDirection : 'row',
+        justifyContent: 'flex-end',
     },
     header: {
         color         : '#1E2022',

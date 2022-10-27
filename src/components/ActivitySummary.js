@@ -22,8 +22,6 @@ const ActivitySummary = ({activity}) => {
         compDate.setMinutes(0);
         compDate.setSeconds(0);
         compDate.setMilliseconds(0);
-        console.log("compDate", compDate);
-        console.log("today", today);
         let diff = today.getTime() - compDate.getTime();
         if (compDate.getTime() === today.getTime()) {
             return "Hôm nay";
