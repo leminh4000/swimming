@@ -143,7 +143,12 @@ const switchNavigator = createSwitchNavigator({
                 },
               }
             ),
-            ActivityDetail: ActivityDetailScreen,
+            ActivityDetail: {
+              screen: ActivityDetailScreen,
+              navigationOptions: {
+                headerTitle: 'Thống kê'
+              },
+            },
           },
           {
             defaultNavigationOptions: {

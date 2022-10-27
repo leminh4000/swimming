@@ -16,7 +16,6 @@ const fetchMonthActivitiesSummary= (dispatch) => async () => {
     firstDay.setHours(0, 0, 0, 0);
 
     const response = await swimApi.get(`/activitiesSummary?from=${firstDay.toISOString()}`);
-    console.log("fetchMonthActivitiesSummary",response.data);
     dispatch({
         type   : 'fetch_summary',
         payload: response.data

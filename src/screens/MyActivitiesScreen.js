@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 
 import {
-    View, StyleSheet, ScrollView, Modal, Image, TouchableHighlight
+    View, StyleSheet, ScrollView, Modal, Image, TouchableHighlight, Alert
 } from 'react-native';
 import {Context as ArchivementContext} from "../context/ArchivementContext";
 import {Context as ActivityContext} from "../context/ActivityContext";
@@ -108,7 +108,19 @@ const MyActivitiesScreen = ({navigation}) => {
                 console.error(error);
             } else {
                 // console.log(JSON.stringify(data));
+                Alert.alert(
+                    "Thông báo",
+                    `Nhập dữ liệu từ file FIT thành công!`,
+                    [
+                        {
+                            text   : "OK",
+                            onPress: () => console.log("OK Pressed")
+                        }
+                    ]
+                );
                 const newLevel = await addActivities(data.activity);
+                await fetch();
+
                 if (newLevel) {
                     switch (newLevel) {
                         case 1:
@@ -124,7 +136,7 @@ const MyActivitiesScreen = ({navigation}) => {
                             setModal4Visible(true);
                             break;
                     }
-                    await fetch();
+                    // await fetch();
 
                 }
             }
