@@ -77,8 +77,6 @@ const getLastActivities = (dispatch) => async () => {
     });
 }
 
-
-
 export const {
     Provider,
     Context

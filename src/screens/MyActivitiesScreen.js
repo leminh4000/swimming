@@ -1,35 +1,40 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 
-import {View, StyleSheet, Button, Alert, ScrollView} from 'react-native';
+import {
+    View, StyleSheet, ScrollView, Modal, Image, TouchableHighlight
+} from 'react-native';
+import {Context as ArchivementContext} from "../context/ArchivementContext";
 import {Context as ActivityContext} from "../context/ActivityContext";
 import {NavigationEvents} from "react-navigation";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
 import {Buffer} from "buffer";
-import {Context as ArchivementContext} from "../context/ArchivementContext";
 import ArchivementTable from "../components/ArchivementTable";
-import AchivementIndex from "../components/AchivementIndex";
 import AchivementBadge from "../components/AchivementBadge";
-import {Context as AuthContext} from "../context/AuthContext";
 import LastActivities from "../components/LastActivities";
+import {Text} from "@rneui/base";
 
 
 const MyActivitiesScreen = ({navigation}) => {
+    const [modal1Visible, setModal1Visible] = useState(false);
+    const [modal2Visible, setModal2Visible] = useState(false);
+    const [modal3Visible, setModal3Visible] = useState(false);
+    const [modal4Visible, setModal4Visible] = useState(false);
+
+    let activityContext = useContext(ActivityContext);
     const {
-        state,
         fetchDayActivities,
         addActivities,
-    } = useContext(ActivityContext);
+    } = activityContext;
 
     let archivementContext = useContext(ArchivementContext);
     const {
+        state,
         fetchArchivements,
         fetchLevel,
     } = archivementContext;
 
-    function getBlurRadiuses() {
-        // console.log("getBlurRadiuses archivementContext.state.level", archivementContext.state.level);
-        const level = archivementContext.state.level;
+    function getBlurRadiuses(level) {
         switch (level) {
             case 0:
                 return [
@@ -45,7 +50,7 @@ const MyActivitiesScreen = ({navigation}) => {
                     4,
                     4
                 ];
-            case 4:
+            case 2:
                 return [
                     0,
                     0,
@@ -105,59 +110,136 @@ const MyActivitiesScreen = ({navigation}) => {
                 // console.log(JSON.stringify(data));
                 const newLevel = await addActivities(data.activity);
                 if (newLevel) {
-                    Alert.alert(
-                        "Chúc mừng",
-                        `Bạn đã dành được huy chương level ${newLevel}`,
-                        [
-                            {
-                                text   : "OK",
-                                onPress: () => console.log("OK Pressed")
-                            }
-                        ]
-                    );
-                    fetch();
-                    getBlurRadiuses();
+                    switch (newLevel) {
+                        case 1:
+                            setModal1Visible(true);
+                            break;
+                        case 2:
+                            setModal2Visible(true);
+                            break;
+                        case 3:
+                            setModal3Visible(true);
+                            break;
+                        case 4:
+                            setModal4Visible(true);
+                            break;
+                    }
+                    await fetch();
 
-                    console.log(`Bạn dành được huy chương level ${state.newLevel}`);
                 }
             }
 
         });
         // hideMenu();
     }
-    const fetch = () => {
-        fetchDayActivities();
-        fetchArchivements();
-        fetchLevel();
-    };
-    const arIndex = {
-        "avg_heart_rate"    : "115 bpm",
-        "enhanced_avg_speed": "2p:50m",
-        "total_calories"    : "288 calories",
-        "total_distance"    : "0.0016 km",
-        "total_timer_time"  : "00:34 phút"
+    const fetch = async () => {
+        await fetchArchivements();
+        await fetchLevel();
+        await fetchDayActivities();
     };
 
-    const today = new Date();
-    const dateString = today.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + today.toLocaleDateString('en-GB');
     return <>
 
         <NavigationEvents onWillFocus={fetch}/>
         <ScrollView>
             <View>
                 <View style={styles.mainContainer}>
-                    <LastActivities activities={state} title="Last Activities"/>
+                    <LastActivities activities={activityContext.state} title="Last Activities"/>
                 </View>
-                {/*<AchivementIndex result={arIndex} dateString={dateString}
-                                 username={useContext(AuthContext).state.username}/>*/}
-                <AchivementBadge blurRadiuses={getBlurRadiuses()}/>
+                <AchivementBadge blurRadiuses={getBlurRadiuses(state.level)}/>
                 {/*<View style={styles.containerActivity}>*/}
-                <ArchivementTable title="Thành tích cá nhân"
-                                  results={archivementContext.state.archivements}
-                                  onImportPress={handleDocumentSelection}/>
+                    <ArchivementTable title="Thành tích cá nhân"
+                                      results={state.archivements}
+                                      onImportPress={handleDocumentSelection}/>
                 {/*</View>*/}
+
             </View>
         </ScrollView>
+        <Modal animationType={"slide"} transparent={false}
+               visible={modal1Visible}>
+            <View style={styles.modal}>
+                <Image
+                    style={{
+                        width : 120,
+                        height: 160
+                    }}
+                    source={require('../../assets/level1Medal.png')}
+                />
+                <Text style={styles.text}>Bạn đã bơi 20km và vượt qua
+                    level 1 để dành được huy chương đầu tiên</Text>
+
+                <TouchableHighlight style={styles.touchableButton}
+                                    onPress={() => setModal1Visible(false)}>
+                    <Text style={styles.text}>OK</Text>
+                </TouchableHighlight>
+            </View>
+        </Modal>
+        {/*2*/}
+        <Modal animationType={"slide"} transparent={false}
+               visible={modal2Visible}>
+            <View style={styles.modal}>
+                <Image
+                    style={{
+                        width : 120,
+                        height: 160
+                    }}
+                    source={require('../../assets/level2Medal.png')}
+                />
+                <Text style={styles.text}>Bạn cần bơi 50km để dành được
+                    huy chương level 2</Text>
+
+                <TouchableHighlight style={styles.touchableButton}
+                                    onPress={() => setModal2Visible(false)}>
+                    <Text style={styles.text}>OK</Text>
+                </TouchableHighlight>
+            </View>
+        </Modal>
+        {/*3*/}
+        <Modal animationType={"slide"} transparent={false}
+               visible={modal3Visible}>
+            <View style={styles.modal}>
+                <Image
+                    style={{
+                        width : 120,
+                        height: 180
+                    }}
+                    source={require('../../assets/level3Medal.png')}
+                />
+                <Text style={styles.text}>Bạn cần bơi 100km để dành được
+                    huy chương level 3</Text>
+
+                <TouchableHighlight style={styles.touchableButton}
+                                    onPress={() => setModal3Visible(false)}>
+                    <Text style={styles.text}>OK</Text>
+                </TouchableHighlight>
+            </View>
+        </Modal>
+        {/*4*/}
+        <Modal animationType={"slide"} transparent={false}
+               visible={modal4Visible}>
+            <View style={styles.modal}>
+                <Image
+                    style={{
+                        width : 140,
+                        height: 160
+                    }}
+                    source={require('../../assets/level4Medal.png')}
+                />
+                <Text style={styles.text}>Bạn cần bơi 150km để dành được
+                    huy chương level 4</Text>
+
+                <TouchableHighlight style={styles.touchableButton}
+                                    onPress={() => setModal4Visible(false)}>
+                    <Text style={styles.text}>OK</Text>
+                </TouchableHighlight>
+            </View>
+        </Modal>
+        {/*<TouchableHighlight style={styles.touchableButton}*/}
+        {/*                    onPress={() => {*/}
+        {/*                        setModal1Visible(true)*/}
+        {/*                    }}>*/}
+        {/*    <Text style={styles.text}>Open Modal</Text>*/}
+        {/*</TouchableHighlight>*/}
     < />
 };
 
@@ -180,7 +262,7 @@ const styles = StyleSheet.create({
         // alignItems     : 'center',
     },
     mainContainer  : {
-        padding: 10,
+        padding   : 10,
         alignItems: 'center',
     },
 
@@ -200,8 +282,7 @@ const styles = StyleSheet.create({
         fontWeight     : 'bold',
         color          : 'white',
         backgroundColor: 'green',
-        padding        : 15,
-        // borderRadius   : 25,
+        padding        : 15, // borderRadius   : 25,
         // overflow       : 'hidden',
 
     },
@@ -288,6 +369,34 @@ const styles = StyleSheet.create({
 
     },
 
+    /*container: {
+        flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 20
+    },*/
+    modal          : {
+        flex           : 1,
+        alignItems     : 'center',
+        backgroundColor: '#5D7AF2',
+        justifyContent : 'center',
+        padding        : 10,
+    },
+    text           : {
+        color     : '#fff',
+        fontSize  : 20,
+        textAlign : 'center',
+        fontWeight: 'bold',
+    },
+    touchableButton: {
+        width          : '70%',
+        padding        : 10,
+        backgroundColor: '#5D7AF2',
+        borderColor    : 'white',
+        borderWidth    : 1,
+        marginBottom   : 10,
+        marginTop      : 30,
+    },
 })
 
 

@@ -1,14 +1,18 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import createDataContext from "./createDataContext";
 import swimApi from "../api/swimApi";
-import {navigate} from '../navigationRef'
 
 const archivementReducer = (state, action) => {
     switch (action.type) {
         case 'fetch_archivements':
-            return action.payload ? {...state, archivements:action.payload}:state;
+            return action.payload ? {
+                ...state,
+                archivements: action.payload
+            } : state;
          case 'fetch_level':
-            return {...state,level:action.payload};
+             return {
+                 ...state,
+                 level: action.payload
+             };
         default :
             return state;
     }
@@ -37,11 +41,11 @@ const fetchArchivements = (dispatch) => async () => {
     // navigate('mainFlow');
 }
 const fetchLevel = (dispatch) => async () => {
+    console.log('fetchLevel');
     const response = await swimApi.get('/archivements2?type=level', {});
-
     dispatch({
         type: 'fetch_level',
-        payload: response.data.length>0?response.data[0].value:null,
+        payload: (response.data.length>0?response.data[0].value:null),
     });
 }
 
@@ -51,4 +55,4 @@ export const {
 } = createDataContext(archivementReducer, {
     fetchArchivements,
     fetchLevel,
-}, []);
+}, {});
