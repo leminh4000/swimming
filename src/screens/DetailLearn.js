@@ -14,13 +14,12 @@ import {
 } from "@expo/vector-icons";
 
 const DetailLearn = ({ navigation, route }) => {
-  const { level } = route.params;
-  const { titleLearn } = route.params;
-  const { numberLearn } = route.params;
-  const { time } = route.params;
-  const { img } = route.params;
-  const { video1 } = route.params;
-  const { video2 } = route.params;
+  // const { titleLearn } = route.params;
+  // const { numberLearn } = route.params;
+  // const { time } = route.params;
+  // const { img } = route.params;
+  // const { video1 } = route.params;
+  // const { video2 } = route.params;
   return (
     <SafeAreaView>
       <ScrollView>
@@ -72,9 +71,7 @@ const DetailLearn = ({ navigation, route }) => {
                     lineHeight: 16,
                     color: "#145BB6",
                   }}
-                >
-                  Beginner
-                </Text>
+                ></Text>
               </View>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -135,7 +132,7 @@ const DetailLearn = ({ navigation, route }) => {
                 >
                   <View style={{ flexDirection: "row" }}>
                     <Image
-                      source={img}
+                      // source={img}
                       style={{ width: 188, height: 107, borderRadius: 8 }}
                     />
                     <View style={{ justifyContent: "center", marginLeft: 23 }}>
@@ -148,7 +145,7 @@ const DetailLearn = ({ navigation, route }) => {
                           letterSpacing: -0.32,
                         }}
                       >
-                        {titleLearn}
+                        {/* {titleLearn} */}
                       </Text>
                       <View style={{ flexDirection: "row", marginTop: 3 }}>
                         <Text
@@ -158,7 +155,7 @@ const DetailLearn = ({ navigation, route }) => {
                             letterSpacing: -0.32,
                           }}
                         >
-                          {time}
+                          {/* {time} */}
                         </Text>
                         <Text
                           style={{
@@ -168,7 +165,7 @@ const DetailLearn = ({ navigation, route }) => {
                             letterSpacing: -0.32,
                           }}
                         >
-                          {numberLearn}
+                          {/* {numberLearn} */}
                         </Text>
                       </View>
                     </View>

@@ -68,12 +68,12 @@ const BeginLearnScreen = ({ navigation }) => {
                     onPress={() =>
                       navigation.navigate("DetailLearn", {
                         level: data.level,
-                        titleLearn: data.titleLearn,
-                        numberLearn: data.numberLearn,
-                        time: data.time,
-                        img: data.img,
-                        video1: data.video1,
-                        video2: data.video2,
+                        // titleLearn: data.titleLearn,
+                        // numberLearn: data.numberLearn,
+                        // time: data.time,
+                        // img: data.img,
+                        // video1: data.video1,
+                        // video2: data.video2,
                       })
                     }
                   >
