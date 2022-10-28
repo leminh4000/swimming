@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Context as ArchivementContext } from "../context/ArchivementContext";
+import React, { useContext } from 'react';
+import { Context as ArchivementContext } from '../context/ArchivementContext';
 import {
   View,
   StyleSheet,
@@ -7,53 +7,15 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-} from "react-native";
-import ArchivementTable from "../components/ArchivementTable";
-import { NavigationEvents } from "react-navigation";
-import Spacer from "../components/Spacer";
+} from 'react-native';
+import ArchivementTable from '../components/ArchivementTable';
+import { NavigationEvents } from 'react-navigation';
+import Spacer from '../components/Spacer';
+import { learn } from '../data/learn';
 
 const BeginLearnScreen = ({ navigation }) => {
   const { state, fetchArchivements } = useContext(ArchivementContext);
-  const learn = [
-    {
-      id: 1,
-      level: "Beginner",
-      titleLearn: "Start",
-      numberLearn: "2 bài",
-      time: "1 phút",
-      img: require("../../assets/storage/imgs/img1.png"),
-      video1: require("../../assets/storage/imgs/video/start.mp4"),
-      video2: require("../../assets/storage/imgs/video/start1.mp4"),
-    },
-    {
-      id: 2,
-      titleLearn: "Start",
-      numberLearn: "4 bài",
-      time: "1h 30 phút",
-      img: require("../../assets/storage/imgs/img1.png"),
-    },
-    {
-      id: 3,
-      titleLearn: "Start",
-      numberLearn: "4 bài",
-      time: "1h 30 phút",
-      img: require("../../assets/storage/imgs/img1.png"),
-    },
-    {
-      id: 4,
-      titleLearn: "Start",
-      numberLearn: "4 bài",
-      time: "1h 30 phút",
-      img: require("../../assets/storage/imgs/img1.png"),
-    },
-    {
-      id: 5,
-      titleLearn: "Start",
-      numberLearn: "4 bài",
-      time: "1h 30 phút",
-      img: require("../../assets/storage/imgs/img1.png"),
-    },
-  ];
+
   return (
     <>
       <NavigationEvents onWillFocus={fetchArchivements} />
@@ -66,14 +28,23 @@ const BeginLearnScreen = ({ navigation }) => {
                   <TouchableOpacity
                     key={index}
                     onPress={() =>
-                      navigation.navigate("DetailLearn", {
+                      navigation.navigate('DetailLearn', {
                         level: data.level,
-                        // titleLearn: data.titleLearn,
-                        // numberLearn: data.numberLearn,
-                        // time: data.time,
-                        // img: data.img,
-                        // video1: data.video1,
-                        // video2: data.video2,
+                        titleLearn: data.titleLearn,
+                        numberLearn: data.numberLearn,
+                        time: data.time,
+                        img: data.img,
+                        img1: data.img1,
+                        img2: data.img2,
+                        video1: data.video1,
+                        video2: data.video2,
+                        video3: data.video3,
+                        title1: data.title1,
+                        title2: data.title2,
+                        title3: data.title3,
+                        timevideo1: data.timevideo1,
+                        timevideo2: data.timevideo2,
+                        timevideo3: data.timevideo3,
                       })
                     }
                   >
@@ -82,30 +53,30 @@ const BeginLearnScreen = ({ navigation }) => {
                         height: 107,
                         width: 376,
                         borderWidth: 0.2,
-                        marginHorizontal: "5%",
+                        marginHorizontal: '5%',
                         marginBottom: 23,
                       }}
                     >
-                      <View style={{ flexDirection: "row" }}>
+                      <View style={{ flexDirection: 'row' }}>
                         <Image
                           source={data.img}
                           style={{ width: 188, height: 107, borderRadius: 8 }}
                         />
                         <View
-                          style={{ justifyContent: "center", marginLeft: 23 }}
+                          style={{ justifyContent: 'center', marginLeft: 23 }}
                         >
                           <Text
                             style={{
                               fontSize: 18,
-                              color: "#145BB6",
-                              fontWeight: "700",
+                              color: '#145BB6',
+                              fontWeight: '700',
                               lineHeight: 21,
                               letterSpacing: -0.32,
                             }}
                           >
                             {data.titleLearn}
                           </Text>
-                          <View style={{ flexDirection: "row", marginTop: 3 }}>
+                          <View style={{ flexDirection: 'row', marginTop: 3 }}>
                             <Text
                               style={{
                                 fontSize: 12,
