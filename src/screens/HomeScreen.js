@@ -18,10 +18,19 @@ import { NavigationEvents } from "react-navigation";
 const HomeScreen = ({ navigation }) => {
   const { state, getLastActivities } = useContext(ActivityContext);
   const { signout } = useContext(AuthContext);
+  let swimContext = useContext(SwimContext);
+  const {fetchMaxLevel}  = swimContext;
 
+  async function fetch() {
+    await getLastActivities();
+    await fetchMaxLevel();
+
+  }
+
+  // swimContext.stâte.maxLevel
   return (
     <>
-      <NavigationEvents onWillFocus={getLastActivities} />
+      <NavigationEvents onWillFocus={fetch} />
       <View style={styles.container}>
         <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
 
