@@ -41,7 +41,7 @@ const HomeScreen = ({navigation}) => {
                 <Text style={styles.textTitle}>{"Dành cho bạn"}</Text>
 
                 {swimContext.state.maxLevel === 0 && <TouchableOpacity
-                    onPress={() => navigation.navigate("BeginLearnScreen")}
+                    onPress={() => navigation.navigate(/*"BeginLearn"*/"BeginLearnScreen")}
                 >
                     <View style={styles.containerImage}>
                         <ImageBackground
@@ -56,7 +56,7 @@ const HomeScreen = ({navigation}) => {
                 </TouchableOpacity>}
 
                 {swimContext.state.maxLevel === 1 && <TouchableOpacity
-                    onPress={() => navigation.navigate("IntermediateLearnScreen")}
+                    onPress={() => navigation.navigate(/*"IntermediateLearn"*/"IntermediateLearnScreen")}
                 >
                     <View style={styles.containerImage}>
                         <ImageBackground
@@ -70,7 +70,7 @@ const HomeScreen = ({navigation}) => {
                     </View>
                 </TouchableOpacity>}
                 {swimContext.state.maxLevel >= 2 && <TouchableOpacity
-                    onPress={() => navigation.navigate("AdvanceLearnScreen")}
+                    onPress={() => navigation.navigate(/*"AdvanceLearn"*/"AdvanceLearnScreen")}
                 >
                     <View style={styles.containerImage}>
                         <ImageBackground
