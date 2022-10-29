@@ -14,15 +14,30 @@ import {
 } from "@expo/vector-icons";
 
 const DetailLearn2 = ({ navigation }) => {
+  const level = navigation.getParam("level");
+  const titleLearn = navigation.getParam("titleLearn");
+  const numberLearn = navigation.getParam("numberLearn");
+  const time = navigation.getParam("time");
+  const img = navigation.getParam("img");
+  const img1 = navigation.getParam("img1");
+  const img2 = navigation.getParam("img2");
+  const video1 = navigation.getParam("video1");
+  const video2 = navigation.getParam("video2");
+  const video3 = navigation.getParam("video3");
+  const title1 = navigation.getParam("title1");
+  const title2 = navigation.getParam("title2");
+  const title3 = navigation.getParam("title3");
+  const timevideo1 = navigation.getParam("timevideo1");
+  const timevideo2 = navigation.getParam("timevideo2");
+  const timevideo3 = navigation.getParam("timevideo3");
+  const kcal = navigation.getParam("kcal");
+
   return (
     <SafeAreaView>
       <ScrollView>
         <View>
           <View style={{ width: "100%", height: 329 }}>
-            <Image
-              style={{ width: "100%", height: 280 }}
-              source={require("../../assets/storage/imgs/img1.png")}
-            />
+            <Image style={{ width: "100%", height: 280 }} source={img} />
             <Text
               style={{
                 marginTop: 12,
@@ -33,7 +48,7 @@ const DetailLearn2 = ({ navigation }) => {
                 lineHeight: 21,
               }}
             >
-              KỸ THUẬT TAY
+              {titleLearn}
             </Text>
           </View>
           <View
@@ -66,7 +81,7 @@ const DetailLearn2 = ({ navigation }) => {
                     color: "#145BB6",
                   }}
                 >
-                  Beginner
+                  Intermediate
                 </Text>
               </View>
             </View>
@@ -107,7 +122,7 @@ const DetailLearn2 = ({ navigation }) => {
                     color: "#145BB6",
                   }}
                 >
-                  3 videos
+                  {numberLearn}
                 </Text>
               </View>
             </View>
@@ -115,19 +130,24 @@ const DetailLearn2 = ({ navigation }) => {
           <View style={{ marginTop: 28 }}>
             <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate("VideoLearn")}
+                onPress={() =>
+                  navigation.navigate("VideoLearn", {
+                    video1,
+                    title1,
+                  })
+                }
               >
                 <View
                   style={{
                     height: 107,
                     width: 376,
-                    borderWidth: 0.2,
                     marginHorizontal: "5%",
                     marginBottom: 23,
                   }}
                 >
                   <View style={{ flexDirection: "row" }}>
                     <Image
+                      source={img}
                       style={{ width: 188, height: 107, borderRadius: 8 }}
                     />
                     <View style={{ justifyContent: "center", marginLeft: 23 }}>
@@ -139,7 +159,9 @@ const DetailLearn2 = ({ navigation }) => {
                           lineHeight: 21,
                           letterSpacing: -0.32,
                         }}
-                      ></Text>
+                      >
+                        {title1}
+                      </Text>
                       <View style={{ flexDirection: "row", marginTop: 3 }}>
                         <Text
                           style={{
@@ -147,15 +169,109 @@ const DetailLearn2 = ({ navigation }) => {
                             lineHeight: 21,
                             letterSpacing: -0.32,
                           }}
-                        ></Text>
+                        >
+                          {timevideo1}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("VideoLearn1", {
+                    video2,
+                    title2,
+                  })
+                }
+              >
+                <View
+                  style={{
+                    height: 107,
+                    width: 376,
+                    marginHorizontal: "5%",
+                    marginBottom: 23,
+                  }}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Image
+                      source={img1}
+                      style={{ width: 188, height: 107, borderRadius: 8 }}
+                    />
+                    <View style={{ justifyContent: "center", marginLeft: 23 }}>
+                      <Text
+                        style={{
+                          fontSize: 18,
+                          color: "#145BB6",
+                          fontWeight: "700",
+                          lineHeight: 21,
+                          letterSpacing: -0.32,
+                        }}
+                      >
+                        {title2}
+                      </Text>
+                      <View style={{ flexDirection: "row", marginTop: 3 }}>
                         <Text
                           style={{
-                            marginLeft: 12,
                             fontSize: 12,
                             lineHeight: 21,
                             letterSpacing: -0.32,
                           }}
-                        ></Text>
+                        >
+                          {timevideo2}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("VideoLearn2", {
+                    video3,
+                    title3,
+                  })
+                }
+              >
+                <View
+                  style={{
+                    height: 107,
+                    width: 376,
+                    marginHorizontal: "5%",
+                    marginBottom: 23,
+                  }}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Image
+                      source={img2}
+                      style={{ width: 188, height: 107, borderRadius: 8 }}
+                    />
+                    <View style={{ justifyContent: "center", marginLeft: 23 }}>
+                      <Text
+                        style={{
+                          fontSize: 18,
+                          color: "#145BB6",
+                          fontWeight: "700",
+                          lineHeight: 21,
+                          letterSpacing: -0.32,
+                        }}
+                      >
+                        {title3}
+                      </Text>
+                      <View style={{ flexDirection: "row", marginTop: 3 }}>
+                        <Text
+                          style={{
+                            fontSize: 12,
+                            lineHeight: 21,
+                            letterSpacing: -0.32,
+                          }}
+                        >
+                          {timevideo3}
+                        </Text>
                       </View>
                     </View>
                   </View>

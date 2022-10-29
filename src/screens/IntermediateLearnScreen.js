@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Context as ArchivementContext } from '../context/ArchivementContext';
+import React, { useContext } from "react";
+import { Context as ArchivementContext } from "../context/ArchivementContext";
 import {
   View,
   StyleSheet,
@@ -7,13 +7,13 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-} from 'react-native';
-import { Button } from 'react-native-elements';
-import { Context as AuthContext } from '../context/AuthContext';
-import Spacer from '../components/Spacer';
-import { NavigationEvents } from 'react-navigation';
-import Intermediate from '../components/Intermediate';
-import { learn } from '../data/learn';
+} from "react-native";
+import { Button } from "react-native-elements";
+import { Context as AuthContext } from "../context/AuthContext";
+import Spacer from "../components/Spacer";
+import { NavigationEvents } from "react-navigation";
+import Intermediate from "../components/Intermediate";
+import { learn } from "../data/learn";
 
 const IntermediateLearnScreen = ({ navigation }) => {
   const { state, fetchArchivements } = useContext(ArchivementContext);
@@ -30,19 +30,23 @@ const IntermediateLearnScreen = ({ navigation }) => {
                   <TouchableOpacity
                     key={index}
                     onPress={() =>
-                      navigation.navigate('DetailLearn', {
+                      navigation.navigate("DetailLearn2", {
                         level: data.level,
                         titleLearn: data.titleLearn,
                         numberLearn: data.numberLearn,
                         time: data.time,
                         img: data.img,
+                        img1: data.img1,
+                        img2: data.img2,
                         video1: data.video1,
                         video2: data.video2,
+                        video3: data.video3,
                         title1: data.title1,
                         title2: data.title2,
+                        title3: data.title3,
                         timevideo1: data.timevideo1,
                         timevideo2: data.timevideo2,
-                        kcal: data.kcal,
+                        timevideo3: data.timevideo3,
                       })
                     }
                   >
@@ -51,30 +55,30 @@ const IntermediateLearnScreen = ({ navigation }) => {
                         height: 107,
                         width: 376,
                         borderWidth: 0.2,
-                        marginHorizontal: '5%',
+                        marginHorizontal: "5%",
                         marginBottom: 23,
                       }}
                     >
-                      <View style={{ flexDirection: 'row' }}>
+                      <View style={{ flexDirection: "row" }}>
                         <Image
                           source={data.img}
                           style={{ width: 188, height: 107, borderRadius: 8 }}
                         />
                         <View
-                          style={{ justifyContent: 'center', marginLeft: 23 }}
+                          style={{ justifyContent: "center", marginLeft: 23 }}
                         >
                           <Text
                             style={{
                               fontSize: 18,
-                              color: '#145BB6',
-                              fontWeight: '700',
+                              color: "#145BB6",
+                              fontWeight: "700",
                               lineHeight: 21,
                               letterSpacing: -0.32,
                             }}
                           >
                             {data.titleLearn}
                           </Text>
-                          <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                          <View style={{ flexDirection: "row", marginTop: 3 }}>
                             <Text
                               style={{
                                 fontSize: 12,
