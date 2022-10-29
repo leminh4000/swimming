@@ -12,7 +12,6 @@ import { Button } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
 import Spacer from "../components/Spacer";
 import { NavigationEvents } from "react-navigation";
-import Intermediate from "../components/Intermediate";
 
 const AdvanceLearnScreen = ({ navigation }) => {
   const { state, fetchArchivements } = useContext(ArchivementContext);
