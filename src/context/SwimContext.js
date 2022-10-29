@@ -16,6 +16,11 @@ const swimReducer = (state, action) => {
                 errorMessage: '',
                 level       : action.payload
             };
+        case 'fetch_max_level':
+            return {
+                ...state,
+                maxLevel: action.payload
+            };
         case 'setGender':
             return {
                 ...state,
@@ -64,6 +69,8 @@ const setWeight = dispatch => (weight) => {
 const tryLocalGetLevel = dispatch => async () => {
     // await AsyncStorage.removeItem('level');
     const level = await AsyncStorage.getItem('level');
+    console.log("tryLocalGetLevel level", level);
+
     if (level) {
         dispatch({
             type   : 'setLevel',
@@ -77,7 +84,7 @@ const tryLocalGetLevel = dispatch => async () => {
                 await AsyncStorage.setItem('level', `${response.data.level}`);
                 dispatch({
                     type: 'setLevel',
-                    data: response.data.level
+                    data: response.data[0].level
                 });
                 navigate('mainFlow');
             } else {
@@ -104,14 +111,39 @@ const setLevel = (dispatch) => async (level) => {
         const response = await swimApi.post('/userLevels', {
             level: level,
         });
+
         await AsyncStorage.setItem('level', `${response.data.level}`);
 
         dispatch({
             type: 'setLevel',
-            data: response.data.level
+            payload: response.data.level
         });
 
         // navigate('mainFlow');
+    } catch (err) {
+        console.error("ERROR: ", err.message)
+        dispatch({
+            type   : 'add_error',
+            payload: 'Something went wrong set level'
+        });
+    }
+}
+const fetchMaxLevel = (dispatch) => async () => {
+    try {
+        const response2 = await swimApi.get('/userLevels');
+        const userLevel = parseInt(response2.data[0].level || '0');
+
+        const response = await swimApi.get('/archivements2?type=level', {});
+
+        const medalLevel = parseInt(response.data.length > 0 ? response.data[0].value : "0");
+
+        const maxLevel = Math.max(userLevel, medalLevel);
+
+        dispatch({
+            type: 'fetch_max_level',
+            payload: maxLevel
+        });
+
     } catch (err) {
         console.error("ERROR: ", err.message)
         dispatch({
@@ -124,18 +156,15 @@ const setLevel = (dispatch) => async (level) => {
 export const {
     Provider,
     Context
-} = createDataContext(
-    swimReducer,
-    {
-        setLevel,
-        clearErrorMessage,
-        tryLocalGetLevel,
-        setGender,
-        setHeight,
-        setWeight,
-    },
-    {
-        token       : null,
-        errorMessage: ''
-    }
-);
+} = createDataContext(swimReducer, {
+    setLevel,
+    clearErrorMessage,
+    tryLocalGetLevel,
+    setGender,
+    setHeight,
+    setWeight,
+    fetchMaxLevel,
+}, {
+    token       : null,
+    errorMessage: ''
+});

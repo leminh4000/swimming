@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useCallback, useContext, useState } from "react";
 
 import {
@@ -14,6 +15,18 @@ import AchivementIndex from "../components/AchivementIndex";
 import LastActivities from "../components/LastActivities";
 import { Context as ActivityContext } from "../context/ActivityContext";
 import { NavigationEvents } from "react-navigation";
+=======
+import React, {useContext} from 'react'
+
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Avatar} from "@rneui/themed";
+import {Context as AuthContext} from "../context/AuthContext";
+import LastActivities from "../components/LastActivities";
+import {Context as ActivityContext} from "../context/ActivityContext";
+import {NavigationEvents} from "react-navigation";
+import {Context as SwimContext} from "../context/SwimContext";
+import {Context as ArchivementContext} from "../context/ArchivementContext";
+>>>>>>> 4ade85ad3b6732eb3f4562703ce9324b1a31e603
 
 const HomeScreen = ({ navigation }) => {
   const { state, getLastActivities } = useContext(ActivityContext);
@@ -25,6 +38,7 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.container}>
         <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
 
+<<<<<<< HEAD
         <View style={styles.containerActivity}>
           <View style={styles.mainContainer}>
             <LastActivities activities={state} />
@@ -38,6 +52,43 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.containerTextButton}>
                 <Text style={styles.textButton}>Xem chi tiết</Text>
               </View>
+=======
+    let swimContext = useContext(SwimContext);
+    const {fetchMaxLevel}  = swimContext;
+
+    async function fetch() {
+        await getLastActivities();
+        await fetchMaxLevel();
+
+    }
+
+    return <>
+        <NavigationEvents onWillFocus={fetch}/>
+        <View style={styles.container}>
+            <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
+
+            <View style={styles.containerActivity}>
+                <View style={styles.mainContainer}>
+                    <LastActivities activities={state}/>
+                </View>
+                <TouchableOpacity onPress={() => {
+                    return navigation.navigate('Activities');
+                }}>
+                    <View style={styles.containerButton}>
+                        <View style={styles.containerTextButton}>
+                            <Text style={styles.textButton}>Xem chi tiết</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={signout}>
+                    <View style={styles.containerButton}>
+                        <View style={styles.containerTextButton}>
+                            <Text style={styles.textButton}>Signout</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                {/*<Text>level{swimContext.state.maxLevel}</Text>*/}
+>>>>>>> 4ade85ad3b6732eb3f4562703ce9324b1a31e603
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={signout}>
