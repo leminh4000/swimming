@@ -61,7 +61,7 @@ const HomeScreen = ({navigation}) => {
                     <View style={styles.containerImage}>
                         <ImageBackground
                             style={styles.image}
-                            source={require('../../assets/storage/imgs/img1.jpg')}
+                            source={require('../../assets/storage/imgs/img2.jpg')}
                         >
                             <View style={styles.containerLabel}>
                                 <Text style={styles.label}>Intermediate</Text>
@@ -75,7 +75,7 @@ const HomeScreen = ({navigation}) => {
                     <View style={styles.containerImage}>
                         <ImageBackground
                             style={styles.image}
-                            source={require('../../assets/storage/imgs/img1.jpg')}
+                            source={require('../../assets/storage/imgs/img3.jpg')}
                         >
                             <View style={styles.containerLabel}>
                                 <Text style={styles.label}>Advance</Text>
