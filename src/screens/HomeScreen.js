@@ -1,12 +1,13 @@
-import React, {useCallback, useContext, useState} from 'react'
+import React, {useContext} from 'react'
 
-import {View, StyleSheet, Text, Button, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
-import AchivementIndex from "../components/AchivementIndex";
 import LastActivities from "../components/LastActivities";
 import {Context as ActivityContext} from "../context/ActivityContext";
 import {NavigationEvents} from "react-navigation";
+import {Context as SwimContext} from "../context/SwimContext";
+import {Context as ArchivementContext} from "../context/ArchivementContext";
 
 
 const HomeScreen = ({navigation}) => {
@@ -16,8 +17,17 @@ const HomeScreen = ({navigation}) => {
     } = useContext(ActivityContext);
     const {signout} = useContext(AuthContext);
 
+    let swimContext = useContext(SwimContext);
+    const {fetchMaxLevel}  = swimContext;
+
+    async function fetch() {
+        await getLastActivities();
+        await fetchMaxLevel();
+
+    }
+
     return <>
-        <NavigationEvents onWillFocus={getLastActivities}/>
+        <NavigationEvents onWillFocus={fetch}/>
         <View style={styles.container}>
             <Text style={styles.textTitle}>{"Hoạt động của bạn"}</Text>
 
@@ -41,6 +51,7 @@ const HomeScreen = ({navigation}) => {
                         </View>
                     </View>
                 </TouchableOpacity>
+                {/*<Text>level{swimContext.state.maxLevel}</Text>*/}
             </View>
         </View>
     </>

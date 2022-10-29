@@ -220,10 +220,10 @@ const MyActivitiesScreen = ({navigation}) => {
                 <Text style={styles.text}>Bạn cần bơi 100km để dành được
                     huy chương level 3</Text>
 
-                <TouchableHighlight style={styles.touchableButton}
+                {/*<TouchableHighlight style={styles.touchableButton}
                                     onPress={() => setModal3Visible(false)}>
                     <Text style={styles.text}>OK</Text>
-                </TouchableHighlight>
+                </TouchableHighlight>*/}
             </View>
         </Modal>
         {/*4*/}
