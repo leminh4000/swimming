@@ -19,13 +19,13 @@ const Quest03SkillLevelScreen = ({navigation}) => {
     const [level, levelOnpress] = useState(null);
     React.useRef(null);
     const touchProps1 = {
-        style: level === 1 ? styles.touched : styles.untouched,
+        style: level === 0 ? styles.touched : styles.untouched,
     }
     const touchProps2 = {
-        style: level === 2 ? styles.touched : styles.untouched,
+        style: level === 1 ? styles.touched : styles.untouched,
     }
     const touchProps3 = {
-        style: level === 3 ? styles.touched : styles.untouched,
+        style: level === 2 ? styles.touched : styles.untouched,
     }
     return (<View style={styles.container}>
         <ImageBackground
@@ -47,7 +47,7 @@ const Quest03SkillLevelScreen = ({navigation}) => {
                     những bài tập phù hợp với thể trạng và kinh nghiệm bơi của
                     bạn.</Text>
                 <TouchableHighlight {...touchProps1} onPress={() => {
-                    levelOnpress(1);
+                    levelOnpress(0);
                     console.log("level", level);
                 }}>
                     <View>
@@ -58,7 +58,7 @@ const Quest03SkillLevelScreen = ({navigation}) => {
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight {...touchProps2} onPress={() => {
-                    levelOnpress(2);
+                    levelOnpress(1);
                     console.log("level", level);
                 }}>
                     <View>
@@ -69,7 +69,7 @@ const Quest03SkillLevelScreen = ({navigation}) => {
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight {...touchProps3} onPress={() => {
-                    levelOnpress(3);
+                    levelOnpress(2);
                     console.log("level", level);
                 }}>
                     <View>

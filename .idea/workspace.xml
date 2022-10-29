@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1301b951-8bb6-455f-b4cb-6bd7204328e2" name="Changes" comment="" />
+    <list default="true" id="1301b951-8bb6-455f-b4cb-6bd7204328e2" name="Changes" comment="#new design: level">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/SwimContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/SwimContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Quest02SkillLevelScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Quest02SkillLevelScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Quest03SkillLevelScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Quest03SkillLevelScreen.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +171,7 @@
       <workItem from="1666960955872" duration="377000" />
       <workItem from="1666972778972" duration="911000" />
       <workItem from="1667008727459" duration="585000" />
-      <workItem from="1667022950528" duration="12249000" />
+      <workItem from="1667022950528" duration="13551000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1664904602523</created>
@@ -384,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667054062472</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="#new design: level">
+      <created>1667054569296</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1667054569296</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

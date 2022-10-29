@@ -33,7 +33,7 @@ const HomeScreen = ({navigation}) => {
 
     }
 
-    // console.log("maxLevel",swimContext.state.maxLevel);
+    console.log("maxLevel",swimContext.state.maxLevel);
     return (<>
         <NavigationEvents onWillFocus={fetch}/>
         <ScrollView>

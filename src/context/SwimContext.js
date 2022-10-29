@@ -131,6 +131,7 @@ const setLevel = (dispatch) => async (level) => {
 const fetchMaxLevel = (dispatch) => async () => {
     try {
         const response2 = await swimApi.get('/userLevels');
+        console.log(response2, response2);
         const userLevel = parseInt(response2.data[0].level || '0');
 
         const response = await swimApi.get('/archivements2?type=level', {});

@@ -27,6 +27,7 @@ const Quest02SkillLevelScreen = ({navigation}) => {
                             activeOpacity={0.1}
 
                     />
+                    <Text style={styles.textBold}>Chiều cao và cân nặng</Text>
                     <TextInput
                         style={styles.input}
                         placeholder={'Chiều cao (cm)'}
@@ -55,11 +56,21 @@ Quest02SkillLevelScreen.navigationOptions = () => {
 
 
 const styles = StyleSheet.create({
-    avatar         : {
+    avatar: {
         position: 'absolute',
-        top: -70,
+        top     : -70,
     },
 
+    textBold      : {
+        fontSize         : 14,
+        fontWeight       : 'bold',
+        textAlign        : 'center',
+        textAlignVertical: "center",
+        marginTop        : 100,
+        marginBottom     : 50,
+        marginLeft       : 80,
+        marginRight      : 80,
+    },
     input         : {
         width          : '90%',
         height         : 40,
@@ -73,9 +84,9 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     containerPaper: {
-        width          : '95%',
-        height         : '80%',
-        justifyContent : 'center',
+        width : '95%',
+        height: '80%',
+        // justifyContent : 'center',
         backgroundColor: 'white',
         opacity        : 0.9,
         borderRadius   : 20,
@@ -87,7 +98,7 @@ const styles = StyleSheet.create({
         alignItems    : 'center',
     },
 
-    textBig       : {
+    textBig   : {
         fontSize    : 18,
         fontWeight  : 'bold',
         color       : 'white',
@@ -98,7 +109,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
 
     },
-    textNormal    : {
+    textNormal: {
         fontSize   : 14,
         fontWeight : 'bold',
         color      : 'white',
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
         marginRight: 80,
 
     },
-    textHuge      : {
+    textHuge  : {
         fontSize   : 40,
         fontWeight : 'bold',
         color      : 'white',
@@ -116,7 +127,7 @@ const styles = StyleSheet.create({
         marginRight: 80,
 
     },
-    textUpper     : {
+    textUpper : {
         fontSize   : 12,
         fontWeight : 'bold',
         color      : 'green',
