@@ -13,6 +13,7 @@ import { Context as AuthContext } from "../context/AuthContext";
 import AchivementIndex from "../components/AchivementIndex";
 import LastActivities from "../components/LastActivities";
 import { Context as ActivityContext } from "../context/ActivityContext";
+import { Context as SwimContext } from "../context/SwimContext";
 import { NavigationEvents } from "react-navigation";
 
 const HomeScreen = ({ navigation }) => {
@@ -27,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
 
   }
 
-  // swimContext.stâte.maxLevel
+  console.log("maxLevel",swimContext.state.maxLevel);
   return (
     <>
       <NavigationEvents onWillFocus={fetch} />
