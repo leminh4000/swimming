@@ -102,7 +102,7 @@ const HomeScreen = ({navigation}) => {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={signout}>
-                        <View style={styles.containerButton}>
+                        <View style={{...styles.containerButton, marginTop:100}}>
                             <View style={styles.containerTextButton}>
                                 <Text style={styles.textButton}>Signout</Text>
                             </View>

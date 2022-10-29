@@ -3,13 +3,10 @@ import React, {useContext, useState} from 'react'
 import {View, StyleSheet, Text, TextInput, ImageBackground} from 'react-native';
 import {Avatar, CheckBox, Icon} from "@rneui/themed";
 import NextButton from "../components/NextButton";
-import {Input} from "@rneui/base";
 import {Context as SwimContext} from "../context/SwimContext";
-import Quest01SkillLevelScreen from "./Quest01SkillLevelScreen";
 
 const Quest02SkillLevelScreen = ({navigation}) => {
     const {
-        state,
         setHeight,
         setWeight,
     } = useContext(SwimContext);
