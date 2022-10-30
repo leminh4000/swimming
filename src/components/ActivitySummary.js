@@ -110,8 +110,11 @@ const ActivitySummary = ({activity}) => {
                         <Text
                             style={styles.textSmall}>Vận tốc
                         </Text>
+                        {
+                            console.log("session?.enhanced_avg_speed", session?.enhanced_avg_speed)
+                        }
                         <Text
-                            style={styles.textSmall}>{session?.enhanced_avg_speed}/{session?.pool_length}m
+                            style={styles.textSmall}>{seconds2mmss(Math.floor(session?.total_timer_time))}p/{session?.pool_length}m
                         </Text>
 
                     </View>

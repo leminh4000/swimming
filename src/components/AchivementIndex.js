@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         // height: 110,
         // margin: 5,
         color   : 'white',
-        fontSize: 24,
+        fontSize: 20,
 
     },
     containerCellBig   : {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     cell               : {
         color         : 'white',
-        fontSize      : 24,
+        fontSize      : 20,
     },
     container          : {
         width: '95%', // height        : '20%',
