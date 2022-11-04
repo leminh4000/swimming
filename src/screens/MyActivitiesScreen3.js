@@ -22,6 +22,7 @@ import AchivementIndex from "../components/AchivementIndex";
 import {
     Context as ActivitySummaryContext
 } from "../context/ActivitySummaryContext";
+import Spinner from "react-native-loading-spinner-overlay/src";
 
 
 const MyActivitiesScreen3 = ({navigation}) => {
@@ -33,10 +34,14 @@ const MyActivitiesScreen3 = ({navigation}) => {
     const {
         fetchMonthActivitiesSummary,
     } = useContext(ActivitySummaryContext);
-    const fetch = () => {
-        fetchMonthActivities();
-        fetchMonthActivitiesSummary();
+    const fetch = async () => {
+        setIsLoading(true);
+        await fetchMonthActivities();
+        await fetchMonthActivitiesSummary();
+        setIsLoading(false);
+
     }
+    const [isLoading, setIsLoading] = useState(false);
     return <>
         <NavigationEvents onWillFocus={fetch}/>
         <View style={styles.container}>
@@ -51,6 +56,11 @@ const MyActivitiesScreen3 = ({navigation}) => {
                 </View>
             </View>
             </ScrollView>
+            <Spinner
+                visible={isLoading}
+                textContent={'Hãy chờ...'}
+                textStyle={styles.spinnerTextStyle}
+            />
         </View>
     < />
 };
@@ -84,7 +94,10 @@ MyActivitiesScreen3.navigationOptions = (navData) => {
 
 
 const styles = StyleSheet.create({
-    textHeader     : {
+    spinnerTextStyle: {
+        color: '#FFF',
+    },
+    ttextHeader     : {
         fontSize   : 18,
         color      : '#FFFFFF',
         fontWeight : 'bold',

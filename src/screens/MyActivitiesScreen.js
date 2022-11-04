@@ -1,7 +1,14 @@
 import React, {useContext, useState} from 'react'
 
 import {
-    View, StyleSheet, ScrollView, Modal, Image, TouchableHighlight, Alert
+    View,
+    StyleSheet,
+    ScrollView,
+    Modal,
+    Image,
+    TouchableHighlight,
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 import {Context as ArchivementContext} from "../context/ArchivementContext";
 import {Context as ActivityContext} from "../context/ActivityContext";
@@ -13,6 +20,7 @@ import ArchivementTable from "../components/ArchivementTable";
 import AchivementBadge from "../components/AchivementBadge";
 import LastActivities from "../components/LastActivities";
 import {Text} from "@rneui/base";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 const MyActivitiesScreen = ({navigation}) => {
@@ -145,12 +153,15 @@ const MyActivitiesScreen = ({navigation}) => {
         // hideMenu();
     }
     const fetch = async () => {
+        setIsLoading(true);
         await fetchArchivements();
         await fetchLevel();
         await fetchDayActivities();
+        setIsLoading(false);
     };
 
-    return <>
+    const [isLoading, setIsLoading] = useState(false);
+    return <View>
 
         <NavigationEvents onWillFocus={fetch}/>
         <ScrollView>
@@ -252,11 +263,20 @@ const MyActivitiesScreen = ({navigation}) => {
         {/*                    }}>*/}
         {/*    <Text style={styles.text}>Open Modal</Text>*/}
         {/*</TouchableHighlight>*/}
-    < />
+        {/*<ActivityIndicator size="small" color="#0000ff" animating={isLoading} />*/}
+        <Spinner
+            visible={isLoading}
+            textContent={'Hãy chờ...'}
+            textStyle={styles.spinnerTextStyle}
+        />
+    </View>
 };
 
 
 const styles = StyleSheet.create({
+    spinnerTextStyle: {
+        color: '#FFF',
+    },
     textHeader     : {
         fontSize   : 18,
         color      : '#FFFFFF',

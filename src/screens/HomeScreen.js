@@ -17,6 +17,7 @@ import LastActivities from "../components/LastActivities";
 import {Context as ActivityContext} from "../context/ActivityContext";
 import {Context as SwimContext} from "../context/SwimContext";
 import {NavigationEvents} from "react-navigation";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const HomeScreen = ({navigation}) => {
     const {
@@ -28,12 +29,15 @@ const HomeScreen = ({navigation}) => {
     const {fetchMaxLevel} = swimContext;
 
     async function fetch() {
+        setIsLoading(true);
         await getLastActivities();
         await fetchMaxLevel();
+        setIsLoading(false);
 
     }
 
     console.log("maxLevel",swimContext.state.maxLevel);
+    const [isLoading, setIsLoading] = useState(false);
     return (<>
         <NavigationEvents onWillFocus={fetch}/>
         <ScrollView>
@@ -161,6 +165,11 @@ const HomeScreen = ({navigation}) => {
                         </TouchableOpacity>
                     </View>*/}
                 </View>
+                <Spinner
+                    visible={isLoading}
+                    textContent={'Hãy chờ...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
             </View>
         </ScrollView>
     </>);
@@ -192,7 +201,10 @@ HomeScreen.navigationOptions = () => {
 };
 
 const styles = StyleSheet.create({
-    containerImage: {
+    spinnerTextStyle: {
+        color: '#FFF',
+    },
+    tcontainerImage: {
         alignItems: 'center',
     },
     image         : {

@@ -10,6 +10,7 @@ import {NavigationEvents} from "react-navigation";
 import {Avatar} from "@rneui/themed";
 import {Context as AuthContext} from "../context/AuthContext";
 import AchivementIndex from "../components/AchivementIndex";
+import Spinner from "react-native-loading-spinner-overlay/src";
 
 
 const MyActivitiesScreen2 = ({navigation}) => {
@@ -37,10 +38,14 @@ const MyActivitiesScreen2 = ({navigation}) => {
     //     "total_distance"    : "0.0016 km",
     //     "total_timer_time"  : "00:34 phút"
     // };
-    const fetch = () => {
-        fetchWeekActivities();
-        fetchWeekActivitiesSummary();
+    const fetch = async () => {
+        setIsLoading(true);
+        await fetchWeekActivities();
+        await fetchWeekActivitiesSummary();
+        setIsLoading(false);
+
     }
+    const [isLoading, setIsLoading] = useState(false);
 
     return <>
         <NavigationEvents onWillFocus={fetch}/>
@@ -56,6 +61,11 @@ const MyActivitiesScreen2 = ({navigation}) => {
                     <LastActivities activities={state} title="Last Activities"/>
                 </View>
             </ScrollView>
+            <Spinner
+                visible={isLoading}
+                textContent={'Hãy chờ...'}
+                textStyle={styles.spinnerTextStyle}
+            />
         </View>
     < />
 };
@@ -88,7 +98,10 @@ MyActivitiesScreen2.navigationOptions = (navData) => {
 
 
 const styles = StyleSheet.create({
-    textHeader     : {
+    spinnerTextStyle: {
+        color: '#FFF',
+    },
+    ttextHeader     : {
         fontSize   : 18,
         color      : '#FFFFFF',
         fontWeight : 'bold',
