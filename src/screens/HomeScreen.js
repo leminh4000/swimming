@@ -29,14 +29,18 @@ const HomeScreen = ({navigation}) => {
     const {fetchMaxLevel} = swimContext;
 
     async function fetch() {
-        setIsLoading(true);
-        await getLastActivities();
-        await fetchMaxLevel();
+        try {
+            setIsLoading(true);
+            await getLastActivities();
+            await fetchMaxLevel();
+        } catch (error) {
+            console.error(error);
+        }
         setIsLoading(false);
 
     }
 
-    console.log("maxLevel",swimContext.state.maxLevel);
+    console.log("maxLevel", swimContext.state.maxLevel);
     const [isLoading, setIsLoading] = useState(false);
     return (<>
         <NavigationEvents onWillFocus={fetch}/>
@@ -106,7 +110,10 @@ const HomeScreen = ({navigation}) => {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={signout}>
-                        <View style={{...styles.containerButton, marginTop:100}}>
+                        <View style={{
+                            ...styles.containerButton,
+                            marginTop: 100
+                        }}>
                             <View style={styles.containerTextButton}>
                                 <Text style={styles.textButton}>Signout</Text>
                             </View>
@@ -204,20 +211,20 @@ const styles = StyleSheet.create({
     spinnerTextStyle: {
         color: '#FFF',
     },
-    tcontainerImage: {
+    tcontainerImage : {
         alignItems: 'center',
     },
-    image         : {
+    image           : {
         width       : "100%",
         height      : 200,
         borderRadius: 10,
     },
-    label         : {
+    label           : {
         fontSize  : 12,
         fontWeight: '700',
         color     : 'white',
     },
-    containerLabel: {
+    containerLabel  : {
         marginLeft     : 10,
         marginTop      : 10,
         alignSelf      : 'flex-start',

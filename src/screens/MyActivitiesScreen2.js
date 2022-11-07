@@ -39,9 +39,13 @@ const MyActivitiesScreen2 = ({navigation}) => {
     //     "total_timer_time"  : "00:34 phút"
     // };
     const fetch = async () => {
-        setIsLoading(true);
-        await fetchWeekActivities();
-        await fetchWeekActivitiesSummary();
+        try {
+            setIsLoading(true);
+            await fetchWeekActivities();
+            await fetchWeekActivitiesSummary();
+        } catch (error) {
+            console.error(error);
+        }
         setIsLoading(false);
 
     }
@@ -107,18 +111,18 @@ const styles = StyleSheet.create({
         fontWeight : 'bold',
         paddingLeft: 5,
     },
-    textHeaderSmall: {
+    textHeaderSmall : {
         fontSize   : 14,
         color      : '#FFFFFF',
         paddingLeft: 5,
     },
-    container      : {
+    container       : {
         padding      : 10,
         flex         : 8,
         flexDirection: 'column',
         // alignItems     : 'center',
     },
-    mainContainer  : {
+    mainContainer   : {
         alignItems: 'center',
     },
 

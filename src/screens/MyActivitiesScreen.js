@@ -154,9 +154,13 @@ const MyActivitiesScreen = ({navigation}) => {
     }
     const fetch = async () => {
         setIsLoading(true);
-        await fetchArchivements();
-        await fetchLevel();
-        await fetchDayActivities();
+        try {
+            await fetchArchivements();
+            await fetchLevel();
+            await fetchDayActivities();
+        } catch (error) {
+            console.error(error);
+        }
         setIsLoading(false);
     };
 

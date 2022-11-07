@@ -36,8 +36,12 @@ const MyActivitiesScreen3 = ({navigation}) => {
     } = useContext(ActivitySummaryContext);
     const fetch = async () => {
         setIsLoading(true);
-        await fetchMonthActivities();
-        await fetchMonthActivitiesSummary();
+        try {
+            await fetchMonthActivities();
+            await fetchMonthActivitiesSummary();
+        } catch (error) {
+            console.error(error);
+        }
         setIsLoading(false);
 
     }
@@ -46,15 +50,17 @@ const MyActivitiesScreen3 = ({navigation}) => {
         <NavigationEvents onWillFocus={fetch}/>
         <View style={styles.container}>
             <ScrollView>
-            <AchivementIndex result={useContext(ActivitySummaryContext).state}
-                             dateString={"Tháng này (Garmin activities)"}
-                             username={useContext(AuthContext).state.username}/>
+                <AchivementIndex
+                    result={useContext(ActivitySummaryContext).state}
+                    dateString={"Tháng này (Garmin activities)"}
+                    username={useContext(AuthContext).state.username}/>
 
-            <View>
-                <View style={styles.mainContainer}>
-                    <LastActivities activities={state} title="Last Activities"/>
+                <View>
+                    <View style={styles.mainContainer}>
+                        <LastActivities activities={state}
+                                        title="Last Activities"/>
+                    </View>
                 </View>
-            </View>
             </ScrollView>
             <Spinner
                 visible={isLoading}
@@ -103,18 +109,18 @@ const styles = StyleSheet.create({
         fontWeight : 'bold',
         paddingLeft: 5,
     },
-    textHeaderSmall: {
+    textHeaderSmall : {
         fontSize   : 14,
         color      : '#FFFFFF',
         paddingLeft: 5,
     },
-    container      : {
+    container       : {
         padding: 10,
         // flex           : 8,
         // flexDirection  : 'column',
         // alignItems     : 'center',
     },
-    mainContainer  : {
+    mainContainer   : {
         alignItems: 'center',
     },
 
