@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1301b951-8bb6-455f-b4cb-6bd7204328e2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/swimApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/swimApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/MyActivitiesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MyActivitiesScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/MyActivitiesScreen2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MyActivitiesScreen2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/MyActivitiesScreen3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MyActivitiesScreen3.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +173,7 @@
       <workItem from="1667140564365" duration="4075000" />
       <workItem from="1667530235577" duration="2715000" />
       <workItem from="1667655848724" duration="542000" />
-      <workItem from="1667790206386" duration="1865000" />
+      <workItem from="1667790206386" duration="2000000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1664904602523</created>
@@ -446,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667532223025</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="#new design: axios timeout">
+      <created>1667792334392</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1667792334392</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +493,8 @@
     <MESSAGE value="#new design: UI" />
     <MESSAGE value="#new design: level" />
     <MESSAGE value="#new design: speed" />
-    <option name="LAST_COMMIT_MESSAGE" value="#new design: speed" />
+    <MESSAGE value="#new design: axios timeout" />
+    <option name="LAST_COMMIT_MESSAGE" value="#new design: axios timeout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -15,7 +15,7 @@ const instance = axios.create({
   // >>>>>>> 5bb612b8fe51eb608dd58f3d0ef61912a0fd7131
 });
 
-instance.defaults.timeout = 500;
+instance.defaults.timeout = 5000;
 instance.interceptors.request.use(
   async (config) => {
     const token = await AsyncStorage.getItem("token");
