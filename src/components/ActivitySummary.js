@@ -10,6 +10,15 @@ import Spacer from "./Spacer";
 import {Avatar} from "@rneui/themed";
 import {seconds2mmss} from "../helper/Date";
 
+function getSpeed(session) {
+    let totalLengths = 0;
+    for (const lap of session.laps) {
+        totalLengths += lap.num_lengths;
+    }
+    const timePerLength = session.total_timer_time / totalLengths;
+    return <>{seconds2mmss(Math.floor(timePerLength))}p/{session?.pool_length}m</>;
+}
+
 const ActivitySummary = ({activity}) => {
     const getDisplayDate = (date) => {
         let today = new Date();
@@ -25,16 +34,16 @@ const ActivitySummary = ({activity}) => {
         let diff = today.getTime() - compDate.getTime();
         if (compDate.getTime() === today.getTime()) {
             return "Hôm nay";
-        } else if (diff <= (24 * 60 * 60 *1000)) {
+        } else if (diff <= (24 * 60 * 60 * 1000)) {
             return "Hôm qua";
         } else {
-            return  compDate.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + compDate.toLocaleDateString('en-GB');
+            return compDate.toLocaleDateString('vi', {weekday: 'long',}) + ', ' + compDate.toLocaleDateString('en-GB');
         }
     }
     const session = activity.sessions[0];
     const isoDate = session?.timestamp;
     const date = new Date(isoDate);
-    const dateString =getDisplayDate(date);
+    const dateString = getDisplayDate(date);
     return (
         <View style={styles.container}>
             <View style={styles.containerHeader}>
@@ -46,10 +55,10 @@ const ActivitySummary = ({activity}) => {
 
                 />
                 <View style={styles.containerHeaderText}>
-                <Text
-                    style={styles.textHugeBold}>{useContext(AuthContext).state.username}</Text>
-                <Text
-                    style={styles.textNormal}>{dateString} ({activity.type} activity)</Text>
+                    <Text
+                        style={styles.textHugeBold}>{useContext(AuthContext).state.username}</Text>
+                    <Text
+                        style={styles.textNormal}>{dateString} ({activity.type} activity)</Text>
                 </View>
             </View>
             <View style={styles.containerIndexRow}>
@@ -114,7 +123,7 @@ const ActivitySummary = ({activity}) => {
                             console.log("session?.enhanced_avg_speed", session?.enhanced_avg_speed)
                         }
                         <Text
-                            style={styles.textSmall}>{seconds2mmss(Math.floor(session?.total_timer_time))}p/{session?.pool_length}m
+                            style={styles.textSmall}>{getSpeed(session)}
                         </Text>
 
                     </View>
@@ -178,13 +187,13 @@ const styles = StyleSheet.create({
     containerRow          : {
         flexDirection: 'row',
     },
-    containerHeader: {
-        flexDirection : 'row',
-        marginLeft  : 10,
-        marginBottom: 50,
+    containerHeader       : {
+        flexDirection: 'row',
+        marginLeft   : 10,
+        marginBottom : 50,
     },
-    containerHeaderText: {
-        marginLeft  : 5,
+    containerHeaderText   : {
+        marginLeft: 5,
     },
     image                 : {
         width       : 250,
