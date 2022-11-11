@@ -55,6 +55,7 @@ const BeginLearnScreen = ({ navigation }) => {
                         borderWidth: 0.2,
                         marginHorizontal: '5%',
                         marginBottom: 23,
+                        borderRadius: 10,
                       }}
                     >
                       <View style={{ flexDirection: 'row' }}>
