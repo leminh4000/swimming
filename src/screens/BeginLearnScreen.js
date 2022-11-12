@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Context as ArchivementContext } from '../context/ArchivementContext';
+import React, { useContext } from "react";
+import { Context as ArchivementContext } from "../context/ArchivementContext";
 import {
   View,
   StyleSheet,
@@ -7,11 +7,11 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-} from 'react-native';
-import ArchivementTable from '../components/ArchivementTable';
-import { NavigationEvents } from 'react-navigation';
-import Spacer from '../components/Spacer';
-import { learn } from '../data/learn';
+} from "react-native";
+import ArchivementTable from "../components/ArchivementTable";
+import { NavigationEvents } from "react-navigation";
+import Spacer from "../components/Spacer";
+import { learn } from "../data/learn";
 
 const BeginLearnScreen = ({ navigation }) => {
   const { state, fetchArchivements } = useContext(ArchivementContext);
@@ -28,7 +28,7 @@ const BeginLearnScreen = ({ navigation }) => {
                   <TouchableOpacity
                     key={index}
                     onPress={() =>
-                      navigation.navigate('DetailLearn', {
+                      navigation.navigate("DetailLearn", {
                         level: data.level,
                         titleLearn: data.titleLearn,
                         numberLearn: data.numberLearn,
@@ -36,6 +36,7 @@ const BeginLearnScreen = ({ navigation }) => {
                         img: data.img,
                         img1: data.img1,
                         img2: data.img2,
+                        img3: data.img3,
                         video1: data.video1,
                         video2: data.video2,
                         video3: data.video3,
@@ -53,31 +54,31 @@ const BeginLearnScreen = ({ navigation }) => {
                         height: 107,
                         width: 376,
                         borderWidth: 0.2,
-                        marginHorizontal: '5%',
+                        marginHorizontal: "5%",
                         marginBottom: 23,
                         borderRadius: 10,
                       }}
                     >
-                      <View style={{ flexDirection: 'row' }}>
+                      <View style={{ flexDirection: "row" }}>
                         <Image
                           source={data.img}
                           style={{ width: 188, height: 107, borderRadius: 8 }}
                         />
                         <View
-                          style={{ justifyContent: 'center', marginLeft: 23 }}
+                          style={{ justifyContent: "center", marginLeft: 23 }}
                         >
                           <Text
                             style={{
                               fontSize: 18,
-                              color: '#145BB6',
-                              fontWeight: '700',
+                              color: "#145BB6",
+                              fontWeight: "700",
                               lineHeight: 21,
                               letterSpacing: -0.32,
                             }}
                           >
                             {data.titleLearn}
                           </Text>
-                          <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                          <View style={{ flexDirection: "row", marginTop: 3 }}>
                             <Text
                               style={{
                                 fontSize: 12,
